@@ -1,88 +1,56 @@
 function loginAdmin(){
-
-const username = document.getElementById('username').value;
-const password = document.getElementById('password').value;
-
-if(username==='admin' && password==='admin123'){
+const username=document.getElementById('username').value;
+const password=document.getElementById('password').value;
+if(username==='fahrixz'&&password==='fahri76'){
 localStorage.setItem('adminLogin','true');
-window.location.href='dashboard.html';
+window.location='dashboard.html';
 }else{
-alert('Username atau password salah');
+alert('Login gagal');
 }
+}
+
+if(window.location.pathname.includes('dashboard.html')){
+if(localStorage.getItem('adminLogin')!=='true'){
+window.location='admin.html';
+}
+loadOrders();
+setInterval(loadOrders,2000);
+}
+
+function loadOrders(){
+const orders=JSON.parse(localStorage.getItem('orders'))||[];
+document.getElementById('notifCount').innerText=orders.length;
+document.getElementById('totalOrders').innerText=orders.length+' Pesanan';
+let html='';
+orders.forEach((order,index)=>{
+html+=`
+<div class="card">
+<h3>Pesanan ${index+1}</h3>
+<p>Status: ${order.status}</p>
+<p>${order.time}</p>
+<button onclick="approveOrder(${index})">ACC</button>
+<button onclick="rejectOrder(${index})" style="margin-top:10px;background:red">Tolak</button>
+</div>`;
+});
+document.getElementById('orders').innerHTML=html;
+}
+
+function approveOrder(index){
+const orders=JSON.parse(localStorage.getItem('orders'))||[];
+orders[index].status='approved';
+localStorage.setItem('orders',JSON.stringify(orders));
+window.open('https://wa.me/6287895917725','_blank');
+loadOrders();
+}
+
+function rejectOrder(index){
+const orders=JSON.parse(localStorage.getItem('orders'))||[];
+orders[index].status='rejected';
+localStorage.setItem('orders',JSON.stringify(orders));
+loadOrders();
 }
 
 function logoutAdmin(){
 localStorage.removeItem('adminLogin');
-window.location.href='admin.html';
-}
-
-if(window.location.pathname.includes('dashboard.html')){
-
-if(localStorage.getItem('adminLogin')!=='true'){
-window.location.href='admin.html';
-}
-
-loadOrders();
-}
-
-function loadOrders(){
-
-const orderList = document.getElementById('orderList');
-
-if(!orderList) return;
-
-let orders = JSON.parse(localStorage.getItem('orders')) || [];
-
-let html='';
-
-orders.forEach((order,index)=>{
-
-html += `
-<div class="testimonial-card">
-<h3>Pesanan #${index+1}</h3>
-<p>Status : ${order.status}</p>
-<p>Bukti : ${order.proof}</p>
-<br>
-<button class="buy-btn" onclick="approveOrder(${order.id})">
-ACC
-</button>
-<br><br>
-<button class="buy-btn" onclick="rejectOrder(${order.id})">
-Tolak
-</button>
-</div>
-`;
-});
-
-orderList.innerHTML = html;
-}
-
-function approveOrder(id){
-
-let orders = JSON.parse(localStorage.getItem('orders')) || [];
-
-orders = orders.map((order)=>{
-if(order.id===id){
-order.status='approved';
-}
-return order;
-});
-
-localStorage.setItem('orders',JSON.stringify(orders));
-loadOrders();
-}
-
-function rejectOrder(id){
-
-let orders = JSON.parse(localStorage.getItem('orders')) || [];
-
-orders = orders.map((order)=>{
-if(order.id===id){
-order.status='rejected';
-}
-return order;
-});
-
-localStorage.setItem('orders',JSON.stringify(orders));
-loadOrders();
+window.location='admin.html';
 }
