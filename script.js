@@ -1,149 +1,277 @@
-function searchProduct(){
+const products = [
+{
+name:"DANA Premium",
+price:35000,
+category:"ewallet",
+image:"https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_dana_blue.svg"
+},
+{
+name:"OVO Premium",
+price:35000,
+category:"ewallet",
+image:"https://upload.wikimedia.org/wikipedia/commons/e/eb/Logo_ovo_purple.svg"
+},
+{
+name:"QRIS Merchant",
+price:45000,
+category:"qris",
+image:"https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+},
+{
+name:"SeaBank",
+price:50000,
+category:"bank",
+image:"https://seeklogo.com/images/S/seabank-logo-5124E1B6C7-seeklogo.com.png"
+}
+];
 
-let input = document.getElementById("searchInput").value.toLowerCase();
-let cards = document.querySelectorAll(".card");
+let cart = [];
 
-cards.forEach((card)=>{
+function renderProducts(){
+products.forEach((product)=>{
 
-let title = card.querySelector("h3").innerText.toLowerCase();
+const card = `
+<div class="card">
+<img src="${product.image}">
+<h3>${product.name}</h3>
+<div class="price">
+Rp ${product.price.toLocaleString('id-ID')}
+</div>
+<button class="buy-btn"
+onclick='addToCart(${JSON.stringify(product)})'>
+Tambah Keranjang
+</button>
+</div>
+`;
 
-if(title.includes(input)){
-card.style.display = "block";
-}else{
-card.style.display = "none";
+if(product.category==='ewallet'){
+document.getElementById('ewallet').innerHTML += card;
+}
+
+if(product.category==='qris'){
+document.getElementById('qris').innerHTML += card;
+}
+
+if(product.category==='bank'){
+document.getElementById('bank').innerHTML += card;
 }
 
 });
-
 }
 
-const orders = [
-"🔥 Rizky dari Jakarta membeli QRIS Merchant",
-"⚡ Andi dari Bandung membeli DANA Premium",
-"✅ Fajar dari Surabaya membeli SeaBank",
-"💳 Rina dari Medan membeli QRIS UMKM",
-"🏦 Aldi dari Palembang membeli Bank Jago"
-];
+renderProducts();
 
-setInterval(()=>{
-
-let random = orders[Math.floor(Math.random()*orders.length)];
-
-document.getElementById("popupOrder").innerText = random;
-
-},4000);
-
-let time = 3600;
-
-setInterval(()=>{
-
-let hours = Math.floor(time / 3600);
-let minutes = Math.floor((time % 3600) / 60);
-let seconds = time % 60;
-
-let display =
-`${String(hours).padStart(2,"0")} : ${String(minutes).padStart(2,"0")} : ${String(seconds).padStart(2,"0")}`;
-
-let countdown = document.getElementById("countdown");
-
-if(countdown){
-countdown.innerText = display;
+function addToCart(product){
+cart.push(product);
+updateCart();
+alert(product.name + ' berhasil ditambahkan');
 }
 
-if(time > 0){
-time--;
+function updateCart(){
+
+let subtotal = 0;
+let html = '';
+
+cart.forEach((item)=>{
+subtotal += item.price;
+
+html += `
+<div class="cart-item">
+<img src=" ${ item . image } ">
+<div>
+<h4> ${ item . name } </h4>
+<p>Rp ${ item . price . toLocaleString ( 'id-ID' ) } </p>
+</div>
+</div>
+` ;
+} ) ;
+
+misalkan  adminFee = cart.length * 500 ;​​
+misalkan  total = subtotal + biaya administrasi ;
+
+document.getElementById ( ' count ' ) . innerText = cart.length ;​​
+dokumen . getElementById ( 'keranjangItem' ) . batinHTML = html ;
+dokumen . getElementById ( 'subtotal' ) . innerText = 'Rp ' + subtotal . toLocaleString ( 'id-ID' ) ;
+dokumen . getElementById ( 'adminFee' ) . innerText = 'Rp' + Biaya admin . toLocaleString ( 'id-ID' ) ;
+dokumen . getElementById ( 'total' ) . innerText = 'Rp' + jumlah . toLocaleString ( 'id-ID' ) ;
 }
 
-},1000);
-
-function openPayment(product,price){
-document.getElementById("paymentModal").style.display = "flex";
+fungsi  openCart ( ) {
+document.getElementById ( ' cart ' ) . classList.add ( ' active ' ) ;
 }
 
-function closePayment(){
-document.getElementById("paymentModal").style.display = "none";
+fungsi  tutup keranjang ( ) {
+document.getElementById ( ' cart ' ) . classList.remove ( ' active ' ) ;
+}
+
+fungsi  searchProduct ( ) {
+let input = document.getElementById('searchInput').value.toLowerCase();
+let cards = document.querySelectorAll('.card');
+
+cards.forEach((card)=>{
+let title = card.querySelector('h3').innerText.toLowerCase();
+
+if(title.includes(input)){
+card.style.display='block';
+}else{
+card.style.display='none';
+}
+});
+}
+
+function openPaymentPopup(){
+if(cart.length < 1){
+alert('Keranjang masih kosong');
+return;
+}
+
+document.getElementById('paymentPopup').style.display='flex';
+startPaymentTimer();
+}
+
+function closePaymentPopup(){
+document.getElementById('paymentPopup').style.display='none';
 }
 
 let paymentTime = 3600;
+let timerStarted = false;
+
+function startPaymentTimer(){
+
+if(timerStarted) return;
+
+timerStarted = true;
 
 setInterval(()=>{
 
-let minutes = Math.floor(paymentTime / 60);
-let seconds = paymentTime % 60;
+let hours = Math.floor(paymentTime/3600);
+let minutes = Math.floor((paymentTime%3600)/60);
+let seconds = paymentTime%60;
 
-let timer = document.getElementById("paymentCountdown");
+const format = `${String(hours).padStart(2,'0')}:${String(minutes).padStart(2,'0')}:${String(seconds).padStart(2,'0')}`;
 
-if(timer){
-
-timer.innerText =
-`${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}`;
+document.getElementById('paymentTimer').innerText = format;
 
 if(paymentTime > 0){
 paymentTime--;
 }
 
-}
-
 },1000);
+}
 
-function sendToWhatsApp(){
+function submitPayment(){
 
-alert("Bukti pembayaran berhasil diupload. Anda akan diarahkan ke WhatsApp Admin.");
+const proof = document.getElementById('paymentProof').files[0];
 
-window.open(
-"https://wa.me/6287895917725?text=Halo Admin saya sudah melakukan pembayaran",
-"_blank"
-);
+
+
 
 }
 
-function toggleChat(){
+let orders = JSON.parse(localStorage.getItem('orders')) || [];
 
-let chat = document.getElementById("chatBody");
+orders.push({
+id:Date.now(),
+status:'pending',
+proof:proof.name,
+cart:cart
+});
 
-if(chat.style.display === "block"){
-chat.style.display = "none";
-}else{
-chat.style.display = "block";
+localStorage.setItem('orders',JSON.stringify(orders));
+
+closePaymentPopup();
+
+document.getElementById('waitingPopup').style.display='flex';
+
+checkPaymentStatus();
 }
 
-}
+function checkPaymentStatus(){
 
-function sendMessage(){
+const interval = setInterval(()=>{
 
-let input = document.getElementById("chatInput");
-let messages = document.getElementById("chatMessages");
+let orders = JSON.parse(localStorage.getItem('orders')) || [];
 
-if(input.value.trim() === "") return;
+let last = orders[orders.length-1];
 
-messages.innerHTML +=
-`<div class="user-message">${input.value}</div>`;
+if(last.status==='approved'){
+clearInterval(interval);
 
-let userText = input.value.toLowerCase();
-
-input.value = "";
+document.getElementById('waitingPopup').style.display='none';
+document.getElementById('successPopup').style.display='flex';
 
 setTimeout(()=>{
-
-let reply = "Admin sedang offline. AI siap membantu Anda 👋";
-
-if(userText.includes("harga")){
-reply = "Silakan pilih produk untuk melihat harga terbaru ya 😊";
+window.location.href='https://wa.me/6287895917725';
+},3000);
 }
 
-if(userText.includes("qris")){
-reply = "Pembayaran saat ini hanya support QRIS manual.";
+if(last.status==='rejected'){
+clearInterval(interval);
+
+document.getElementById('waitingPopup').style.display='none';
+document.getElementById('failedPopup').style.display='flex';
 }
 
-if(userText.includes("proses")){
-reply = "Estimasi proses 1–5 menit setelah pembayaran diverifikasi.";
+},3000);
 }
 
-messages.innerHTML +=
-`<div class="bot-message">${reply}</div>`;
+function openChat(){
+document.getElementById('chatBox').style.display='flex';
+}
 
-messages.scrollTop = messages.scrollHeight;
+function closeChat(){
+document.getElementById('chatBox').style.display='none';
+}
 
+function sendChat(){
+
+let input = document.getElementById('chatInput');
+let text = input.value;
+
+if(text==='') return;
+
+const messages = document.getElementById('chatMessages');
+
+messages.innerHTML += `
+<div class="user-msg">${text}</div>
+`;
+
+input.value='';
+
+setTimeout(()=>{
+messages.innerHTML += `
+<div class="bot-msg">
+Admin sedang offline, AI membalas otomatis 🤖
+</div>
+`;
 },1000);
+}
 
-  }
+const testimonials = [
+{
+name:'Rizky',
+text:'Proses cepat dan aman banget!'
+},
+{
+name:'Andi',
+text:'Pelayanan ramah dan terpercaya.'
+}
+];
+
+function renderTestimonials(){
+let html='';
+
+testimonials.forEach((item)=>{
+html += `
+<div class="testimonial-card">
+⭐⭐⭐⭐⭐<br><br>
+${item.text}<br><br>
+- ${item.name}
+</div>
+`;
+});
+
+document.getElementById('testimonialContainer').innerHTML = html;
+}
+
+renderTestimonials();
