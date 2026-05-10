@@ -1,234 +1,186 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fahrixz Store</title>
-
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fahrixz Store</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 </head>
 <body>
 
-<!-- LOADING -->
-<div id="loadingScreen">
-  <div class="loading-content">
-    <div class="loader"></div>
-    <h1>Fahrixz Store</h1>
-    <p>Loading Website Premium...</p>
-  </div>
-</div>
-
 <!-- HEADER -->
 <header>
-  <div class="logo">Fahrixz Store</div>
+<div class="logo">Fahrixz Store</div>
 
-  <div class="header-right">
-    <a href="dashboard.html" class="admin-link">
-      <i class="fa-solid fa-user-shield"></i>
-    </a>
+<div class="header-right">
+<button class="admin-link" onclick="window.location.href='admin.html'">
+<i class="fa-solid fa-user-shield"></i>
+</button>
 
-    <div class="cart-btn">
-      <i class="fa-solid fa-cart-shopping"></i>
-      <span class="cart-count" id="count">0</span>
-    </div>
-  </div>
+<div class="cart-btn" onclick="openCart()">
+<i class="fa-solid fa-cart-shopping"></i>
+<span class="cart-count" id="count">0</span>
+</div>
+</div>
 </header>
 
-<!-- STATUS PEMBAYARAN -->
-
-<div class="payment-status" id="paymentStatus">
-
-<div class="payment-box">
-
-<i class="fa-solid fa-clock"></i>
-
-<h2>
-Bukti pembayaran telah dikirim
-</h2>
-
-<p>
-
-Silahkan menunggu sebentar,
-admin akan meninjau pembayaran anda.
-
-</p>
-
-<p>
-
-Jika pembayaran disetujui,
-anda akan diarahkan ke WhatsApp otomatis.
-
-</p>
-
-<p>
-
-Jika ditolak,
-anda bisa membuat pesanan ulang
-dan melakukan pembayaran kembali.
-
-</p>
-
-<div class="status-loading"></div>
-
-</div>
-
-</div>
-  
 <!-- PROMO -->
 <div class="promo-banner">
-  🔥 Promo Hari Ini — Upgrade Premium Mulai 35K
+🔥 Promo Hari Ini — Upgrade Premium Mulai 35K
 </div>
 
 <!-- INFO -->
 <div class="info-box">
-  ⭐ 4.9/5 • 12.842 Transaksi Berhasil <br>
-  ⚡ Proses 1–5 Menit • 🔒 Aman & Bergaransi
+⭐ 4.9/5 • 12.842 Transaksi Berhasil<br>
+⚡ Proses 1–5 Menit • 🔒 Aman & Bergaransi
 </div>
 
 <!-- SEARCH -->
 <div class="search-box">
-  <input type="text" id="searchInput" placeholder="Cari produk..." onkeyup="searchProduct()">
+<input type="text" id="searchInput" placeholder="Cari produk..." onkeyup="searchProduct()">
 </div>
 
-<!-- STOK -->
-<div class="stock-box">
-  Total Stok Produk: <b>562.864</b>
+<!-- CATEGORY -->
+<div class="category">
+<h2>Upgrade E-Wallet</h2>
+<div class="products" id="ewallet"></div>
 </div>
 
-<!-- LIVE STATS -->
-<div class="live-stats">
-  <div class="stat-card">
-    👥 <b>28.491</b><br>
-    Pengunjung Hari Ini
-  </div>
-
-  <div class="stat-card">
-    🛒 <b>1.284</b><br>
-    Order Selesai
-  </div>
-
-  <div class="stat-card">
-    ⭐ <b>4.9/5</b><br>
-    Rating Pelanggan
-  </div>
+<div class="category">
+<h2>Create QRIS</h2>
+<div class="products" id="qris"></div>
 </div>
 
-<!-- COUNTDOWN -->
-<div class="countdown-box">
-  🔥 Promo Berakhir Dalam
-  <div id="countdown">01 : 00 : 00</div>
-</div>
-
-<!-- SLIDER -->
-<div class="slider-banner">
-  <div class="slide-track">
-    <div class="slide">⚡ Upgrade Premium Proses Cepat</div>
-    <div class="slide">🔥 Harga Termurah Se-Indonesia</div>
-    <div class="slide">✅ Aman & Bergaransi 100%</div>
-    <div class="slide">💳 Pembayaran QRIS Manual</div>
-  </div>
-</div>
-
-<!-- PRODUK -->
-<div class="products">
-
-  <div class="card">
-    <img src="https://via.placeholder.com/300x180" alt="Produk">
-    <h3>QRIS Merchant</h3>
-    <p>Rp 35.000</p>
-    <button onclick="openPayment('QRIS Merchant','35000')">
-      Beli Sekarang
-    </button>
-  </div>
-
-  <div class="card">
-    <img src="https://via.placeholder.com/300x180" alt="Produk">
-    <h3>DANA Premium</h3>
-    <p>Rp 50.000</p>
-    <button onclick="openPayment('DANA Premium','50000')">
-      Beli Sekarang
-    </button>
-  </div>
-
-</div>
-
-<!-- PAYMENT MODAL -->
-<div class="payment-modal" id="paymentModal">
-  <div class="payment-box">
-
-    <span class="close-btn" onclick="closePayment()">&times;</span>
-
-    <h2>Pembayaran QRIS</h2>
-
-    <img src="qris.jpg" class="qris-img">
-
-    <a href="qris.jpg" download class="download-btn">
-      Download QRIS
-    </a>
-
-    <div class="payment-timer">
-      Selesaikan pembayaran dalam:
-      <h3 id="paymentCountdown">60:00</h3>
-    </div>
-
-    <input type="file" id="paymentProof">
-
-    <button class="verify-btn" onclick="sendToWhatsApp()">
-      Kirim Bukti Pembayaran
-    </button>
-
-  </div>
+<div class="category">
+<h2>Upgrade Bank Digital</h2>
+<div class="products" id="bank"></div>
 </div>
 
 <!-- TESTIMONI -->
-<div class="testimonial-section">
-  <h2>Testimoni Pelanggan</h2>
+<div class="testimonial-box">
+<h2>Testimoni Pelanggan</h2>
+<div id="testimonialContainer"></div>
+</div>
 
-  <div id="testimonialList">
-    <div class="testimonial-card">
-      ⭐⭐⭐⭐⭐<br>
-      Proses cepat dan aman banget.
-      <h4>- Rizky</h4>
-    </div>
-  </div>
+<!-- CART -->
+<div class="cart" id="cart">
+<div class="cart-header">
+Keranjang Saya
+<span class="close" onclick="closeCart()">&times;</span>
+</div>
+
+<div class="cart-items" id="cartItems"></div>
+
+<div class="checkout">
+<div class="row">
+<span>Total Produk</span>
+<span id="subtotal">Rp 0</span>
+</div>
+
+<div class="row">
+<span>Biaya Admin</span>
+<span id="adminFee">Rp 0</span>
+</div>
+
+<div class="row total-row">
+<b>Total</b>
+<b id="total">Rp 0</b>
+</div>
+
+<button class="checkout-btn" onclick="openPaymentPopup()">
+Checkout Sekarang
+</button>
+</div>
+</div>
+
+<!-- PAYMENT POPUP -->
+<div class="payment-popup" id="paymentPopup">
+<div class="payment-box">
+
+<span class="close-popup" onclick="closePaymentPopup()">&times;</span>
+
+<h2>Pembayaran QRIS</h2>
+
+<p class="payment-warning">
+Pastikan transfer sesuai pesanan yang dibuat!
+</p>
+
+<img src="qris.jpg" class="qris-img">
+
+<a href="qris.jpg" download class="download-btn">
+Download QRIS
+</a>
+
+<div class="timer-box">
+Sisa Waktu Pembayaran
+<div id="paymentTimer">01:00:00</div>
+</div>
+
+<input type="file" id="paymentProof">
+
+<button class="send-proof-btn" onclick="submitPayment()">
+Kirim Bukti Pembayaran
+</button>
+
+</div>
+</div>
+
+<!-- WAITING POPUP -->
+<div class="status-popup" id="waitingPopup">
+<div class="status-box">
+<h2>⏳ Menunggu Verifikasi</h2>
+<p>
+Bukti pembayaran telah dikirim.
+Admin akan meninjau pembayaran anda.
+</p>
+</div>
+</div>
+
+<!-- SUCCESS POPUP -->
+<div class="status-popup" id="successPopup">
+<div class="status-box success">
+<h2>✅ Pembayaran Disetujui</h2>
+<p>
+Anda akan diarahkan ke WhatsApp.
+</p>
+</div>
+</div>
+
+<!-- FAILED POPUP -->
+<div class="status-popup" id="failedPopup">
+<div class="status-box failed">
+<h2>❌ Pembayaran Ditolak</h2>
+<p>
+Pembayaran tidak valid.
+Silahkan coba lagi.
+</p>
+</div>
 </div>
 
 <!-- LIVE CHAT -->
-<div class="chat-widget">
-
-  <div class="chat-header" onclick="toggleChat()">
-    💬 Live Chat
-  </div>
-
-  <div class="chat-body" id="chatBody">
-
-    <div class="chat-messages" id="chatMessages">
-      <div class="bot-message">
-        Halo 👋 Ada yang bisa kami bantu?
-      </div>
-    </div>
-
-    <div class="chat-input-area">
-      <input type="text" id="chatInput" placeholder="Ketik pesan...">
-      <button onclick="sendMessage()">Kirim</button>
-    </div>
-
-  </div>
-
+<div class="live-chat-btn" onclick="openChat()">
+💬 Live Chat
 </div>
 
-<!-- FLOATING WA -->
-<a href="#" class="wa-float">
-  <i class="fa-brands fa-whatsapp"></i>
-</a>
+<div class="chat-box" id="chatBox">
+<div class="chat-header">
+Live Chat
+<span onclick="closeChat()">&times;</span>
+</div>
 
-<!-- POPUP -->
-<div class="popup-order" id="popupOrder">
-  🔥 Rizky dari Jakarta baru saja membeli QRIS Merchant
+<div class="chat-messages" id="chatMessages">
+<div class="bot-msg">
+Halo 👋 Ada yang bisa dibantu?
+</div>
+</div>
+
+<div class="chat-input-box">
+<input type="text" id="chatInput" placeholder="Tulis pesan...">
+<button onclick="sendChat()">Kirim</button>
+</div>
 </div>
 
 <script src="script.js"></script>
-
 </body>
-      </html>w
+  </html>
