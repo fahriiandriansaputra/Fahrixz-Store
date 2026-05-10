@@ -378,4 +378,18 @@ justify-content:center;
 align-items:center;
 font-size:30px;
 text-decoration:none;
+}
+
+.logout-btn{
+background:#ef4444;
+color:white;
+border:none;
+padding:12px 18px;
+border-radius:12px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.logout-btn:hover{
+background:#dc2626;
   }
