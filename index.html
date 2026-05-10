@@ -220,40 +220,213 @@ bottom:20px;
 left:20px;
 background:#2563eb;
 color:white;
+<!-- =========================
+STYLE PREMIUM
+========================= -->
+
+<style>
+
+header{
+background:#ffffff;
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:100;
+box-shadow:0 2px 10px rgba(0,0,0,0.08);
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+color:#2563eb;
+}
+
+.cart-btn{
+position:relative;
+font-size:24px;
+cursor:pointer;
+color:#2563eb;
+}
+
+.cart-count{
+position:absolute;
+top:-8px;
+right:-8px;
+background:#2563eb;
+color:white;
+font-size:12px;
+padding:3px 7px;
+border-radius:50%;
+}
+
+/* PROMO */
+
+.promo-banner{
+margin:20px;
+background:#2563eb;
+color:white;
+padding:14px;
+text-align:center;
+border-radius:15px;
+font-weight:bold;
+font-size:16px;
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* INFO */
+
+.info-box{
+margin:20px;
+background:#eff6ff;
+padding:15px;
+border-radius:15px;
+text-align:center;
+font-size:15px;
+font-weight:bold;
+color:#1e3a8a;
+line-height:1.8;
+}
+
+/* SEARCH */
+
+.search-box{
+margin:20px;
+}
+
+.search-box input{
+width:100%;
+padding:14px;
+border-radius:15px;
+border:1px solid #bfdbfe;
+font-size:16px;
+outline:none;
+}
+
+/* STOCK */
+
+.stock-box{
+margin:20px;
+background:#eff6ff;
+padding:15px;
+border-radius:15px;
+font-size:18px;
+font-weight:bold;
+color:#1e3a8a;
+text-align:center;
+border:1px solid #bfdbfe;
+}
+
+/* LIVE STATS */
+
+.live-stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+gap:15px;
+margin:20px;
+}
+
+.stat-card{
+background:white;
+padding:18px;
+border-radius:18px;
+text-align:center;
+box-shadow:0 3px 10px rgba(0,0,0,0.05);
+border:1px solid #dbeafe;
+font-size:15px;
+color:#1e3a8a;
+line-height:1.7;
+}
+
+/* COUNTDOWN */
+
+.countdown-box{
+margin:20px;
+background:#2563eb;
+color:white;
+padding:20px;
+border-radius:18px;
+text-align:center;
+font-weight:bold;
+}
+
+#countdown{
+margin-top:10px;
+font-size:28px;
+letter-spacing:3px;
+}
+
+/* SLIDER */
+
+.slider-banner{
+overflow:hidden;
+margin:20px;
+background:#eff6ff;
+border-radius:15px;
+padding:15px 0;
+}
+
+.slide-track{
+display:flex;
+width:max-content;
+animation:slideMove 15s linear infinite;
+}
+
+.slide{
+min-width:280px;
+padding:0 20px;
+font-weight:bold;
+color:#2563eb;
+font-size:16px;
+}
+
+@keyframes slideMove{
+0%{transform:translateX(0);}
+100%{transform:translateX(-50%);}
+}
+
+/* FLOATING WA */
+
+.wa-float{
+position:fixed;
+bottom:90px;
+right:20px;
+width:60px;
+height:60px;
+background:#25d366;
+color:white;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:30px;
+text-decoration:none;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+z-index:9999;
+}
+
+/* POPUP */
+
+.popup-order{
+position:fixed;
+bottom:20px;
+left:20px;
+background:#2563eb;
+color:white;
 padding:14px 18px;
 border-radius:15px;
 font-size:14px;
 font-weight:bold;
-box-shadow:0 4px 10px rgba(0,0,0,0.2);
-animation:popupFade 4s infinite;
 z-index:9999;
 }
 
-@keyframes popupFade{
-
-0%{
-opacity:0;
-transform:translateY(30px);
-}
-
-15%{
-opacity:1;
-transform:translateY(0);
-}
-
-85%{
-opacity:1;
-transform:translateY(0);
-}
-
-100%{
-opacity:0;
-transform:translateY(30px);
-}
-
-}
-
 </style>
+
+<!-- =========================
+HEADER
+========================= -->
 
 <header>
 
@@ -271,20 +444,20 @@ Fahrixz Store
 
 </header>
 
-<!-- BANNER PROMO -->
+<!-- PROMO -->
 
 <div class="promo-banner">
 🔥 Promo Hari Ini — Upgrade Premium Mulai 35K
 </div>
 
-<!-- INFO TOKO -->
+<!-- INFO -->
 
 <div class="info-box">
 ⭐ 4.9/5 • 12.842 Transaksi Berhasil <br>
 ⚡ Proses 1–5 Menit • 🔒 Aman & Bergaransi
 </div>
 
-<!-- SEARCH PRODUK -->
+<!-- SEARCH -->
 
 <div class="search-box">
 
@@ -295,19 +468,163 @@ onkeyup="searchProduct()">
 
 </div>
 
-<!-- POPUP ORDER -->
+<!-- POPUP -->
 
 <div class="popup-order" id="popupOrder">
 🔥 Rizky dari Jakarta baru saja membeli QRIS Merchant
 </div>
 
-<!-- TOTAL STOK -->
+<!-- STOK -->
 
 <div class="stock-box">
 Total Stok Produk: <b>562.864</b>
 </div>
 
-<div class="category">
+<!-- LIVE STATS -->
+
+<div class="live-stats">
+
+<div class="stat-card">
+👥 <b>28.491</b><br>
+Pengunjung Hari Ini
+</div>
+
+<div class="stat-card">
+🛒 <b>1.284</b><br>
+Order Selesai
+</div>
+
+<div class="stat-card">
+⭐ <b>4.9/5</b><br>
+Rating Pelanggan
+</div>
+
+</div>
+
+<!-- COUNTDOWN -->
+
+<div class="countdown-box">
+
+🔥 Promo Berakhir Dalam
+
+<div id="countdown">
+02 : 15 : 09
+</div>
+
+</div>
+
+<!-- SLIDER -->
+
+<div class="slider-banner">
+
+<div class="slide-track">
+
+<div class="slide">
+⚡ Upgrade Premium Proses Cepat
+</div>
+
+<div class="slide">
+🔥 Harga Termurah Se-Indonesia
+</div>
+
+<div class="slide">
+✅ Aman & Bergaransi 100%
+</div>
+
+<div class="slide">
+💳 Support Semua E-Wallet
+</div>
+
+</div>
+
+</div>
+
+<!-- FLOATING WA -->
+
+<a href="https://wa.me/6287895917725"
+class="wa-float"
+target="_blank">
+
+<i class="fa-brands fa-whatsapp"></i>
+
+</a>
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+function searchProduct(){
+
+let input =
+document.getElementById("searchInput")
+.value.toLowerCase();
+
+let cards =
+document.querySelectorAll(".card");
+
+cards.forEach((card)=>{
+
+let title =
+card.querySelector("h3")
+.innerText.toLowerCase();
+
+if(title.includes(input)){
+card.style.display="block";
+}else{
+card.style.display="none";
+}
+
+});
+
+}
+
+const orders = [
+
+"🔥 Rizky dari Jakarta membeli QRIS Merchant",
+"⚡ Andi dari Bandung membeli DANA Premium",
+"✅ Fajar dari Surabaya membeli SeaBank",
+"💳 Rina dari Medan membeli QRIS UMKM",
+"🏦 Aldi dari Palembang membeli Bank Jago"
+
+];
+
+setInterval(()=>{
+
+let random =
+orders[Math.floor(Math.random()*orders.length)];
+
+document.getElementById("popupOrder")
+.innerText = random;
+
+},4000);
+
+let time = 8109;
+
+setInterval(()=>{
+
+let hours =
+Math.floor(time / 3600);
+
+let minutes =
+Math.floor((time % 3600) / 60);
+
+let seconds =
+time % 60;
+
+document.getElementById("countdown")
+.innerText =
+
+`${String(hours).padStart(2,"0")} :
+${String(minutes).padStart(2,"0")} :
+${String(seconds).padStart(2,"0")}`;
+
+if(time > 0){
+time--;
+}
+
+},1000);
+
+</script>
 
 /* PRODUCTS */
 
