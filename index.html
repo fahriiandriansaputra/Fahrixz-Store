@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FahriXz Store</title>
+<title>Fahrixz Store</title>
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
@@ -19,13 +19,105 @@ font-family:Arial,sans-serif;
 }
 
 body{
-background:#f5f5f5;
+background:#ffffff;
+animation:fadeWebsite 2s ease;
+}
+
+/* WEBSITE ANIMATION */
+
+@keyframes fadeWebsite{
+
+from{
+opacity:0;
+transform:translateY(30px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+/* LOADING */
+
+#loadingScreen{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:#0f172a;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:99999;
+animation:hideLoading 1s forwards;
+animation-delay:1s;
+}
+
+.loading-content{
+text-align:center;
+color:white;
+animation:zoomIn 1s ease;
+}
+
+.loading-content h1{
+font-size:38px;
+margin-top:20px;
+font-weight:bold;
+}
+
+.loading-content p{
+margin-top:10px;
+font-size:16px;
+opacity:0.8;
+line-height:1.6;
+}
+
+.loader{
+width:80px;
+height:80px;
+border:8px solid rgba(255,255,255,0.2);
+border-top:8px solid #2563eb;
+border-radius:50%;
+animation:spin 1s linear infinite;
+margin:auto;
+}
+
+@keyframes spin{
+100%{
+transform:rotate(360deg);
+}
+}
+
+@keyframes zoomIn{
+
+from{
+opacity:0;
+transform:scale(0.7);
+}
+
+to{
+opacity:1;
+transform:scale(1);
+}
+
+}
+
+@keyframes hideLoading{
+
+to{
+opacity:0;
+visibility:hidden;
+}
+
 }
 
 /* HEADER */
 
 header{
-background:white;
+background:#ffffff;
 padding:15px;
 display:flex;
 justify-content:space-between;
@@ -39,20 +131,21 @@ box-shadow:0 2px 10px rgba(0,0,0,0.08);
 .logo{
 font-size:22px;
 font-weight:bold;
-color:#111827;
+color:#2563eb;
 }
 
 .cart-btn{
 position:relative;
 font-size:24px;
 cursor:pointer;
+color:#2563eb;
 }
 
 .cart-count{
 position:absolute;
 top:-8px;
 right:-8px;
-background:red;
+background:#2563eb;
 color:white;
 font-size:12px;
 padding:3px 7px;
@@ -67,7 +160,7 @@ padding:20px;
 
 .category h2{
 margin-bottom:15px;
-color:#111827;
+color:#1e3a8a;
 }
 
 /* PRODUCTS */
@@ -79,10 +172,11 @@ gap:15px;
 }
 
 .card{
-background:white;
+background:#ffffff;
 border-radius:18px;
 padding:12px;
-box-shadow:0 3px 10px rgba(0,0,0,0.08);
+border:1px solid #dbeafe;
+box-shadow:0 3px 10px rgba(0,0,0,0.05);
 transition:0.3s;
 }
 
@@ -95,17 +189,18 @@ width:100%;
 height:150px;
 object-fit:contain;
 border-radius:14px;
-background:#f9f9f9;
+background:#eff6ff;
 padding:10px;
 }
 
 .card h3{
 margin-top:10px;
 font-size:17px;
+color:#1e3a8a;
 }
 
 .price{
-color:#16a34a;
+color:#2563eb;
 font-weight:bold;
 margin:8px 0;
 font-size:18px;
@@ -127,11 +222,12 @@ font-size:14px;
 }
 
 .preview-btn{
-background:#e5e7eb;
+background:#dbeafe;
+color:#1e3a8a;
 }
 
 .buy-btn{
-background:#111827;
+background:#2563eb;
 color:white;
 }
 
@@ -143,7 +239,7 @@ bottom:-100%;
 left:0;
 width:100%;
 height:90%;
-background:white;
+background:#ffffff;
 z-index:999;
 border-radius:25px 25px 0 0;
 transition:0.4s;
@@ -158,7 +254,7 @@ bottom:0;
 width:100%;
 height:320px;
 object-fit:contain;
-background:#f9f9f9;
+background:#eff6ff;
 }
 
 .preview-content{
@@ -168,11 +264,12 @@ padding:20px;
 .preview h1{
 font-size:24px;
 margin-bottom:10px;
+color:#1e3a8a;
 }
 
 .preview-price{
 font-size:26px;
-color:#16a34a;
+color:#2563eb;
 font-weight:bold;
 margin-bottom:15px;
 }
@@ -182,29 +279,38 @@ position:fixed;
 bottom:0;
 left:0;
 width:100%;
-background:white;
+background:#ffffff;
 padding:15px;
 display:flex;
 gap:10px;
+align-items:center;
 box-shadow:0 -2px 10px rgba(0,0,0,0.1);
 }
 
-.preview-buttons button{
-flex:1;
-padding:14px;
-border:none;
-border-radius:12px;
-font-size:16px;
-cursor:pointer;
-}
-
 .add-cart{
-background:#e5e7eb;
+width:65px;
+height:55px;
+border:none;
+border-radius:15px;
+background:#dbeafe;
+font-size:24px;
+cursor:pointer;
+color:#2563eb;
+display:flex;
+justify-content:center;
+align-items:center;
 }
 
 .buy-now{
-background:#f97316;
+flex:1;
+height:55px;
+border:none;
+border-radius:15px;
+background:#2563eb;
 color:white;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
 }
 
 /* CART */
@@ -216,7 +322,7 @@ top:0;
 width:100%;
 max-width:420px;
 height:100%;
-background:white;
+background:#ffffff;
 z-index:1000;
 transition:0.4s;
 overflow:auto;
@@ -230,10 +336,11 @@ right:0;
 padding:18px;
 font-size:24px;
 font-weight:bold;
-border-bottom:1px solid #ddd;
+border-bottom:1px solid #dbeafe;
 display:flex;
 justify-content:space-between;
 align-items:center;
+color:#1e3a8a;
 }
 
 .close{
@@ -249,7 +356,7 @@ padding:15px;
 display:flex;
 gap:12px;
 margin-bottom:15px;
-background:#f9f9f9;
+background:#eff6ff;
 padding:10px;
 border-radius:15px;
 }
@@ -263,13 +370,9 @@ background:white;
 padding:10px;
 }
 
-.cart-item h4{
-margin-bottom:8px;
-}
-
 .checkout{
 padding:20px;
-border-top:1px solid #ddd;
+border-top:1px solid #dbeafe;
 }
 
 .row{
@@ -282,77 +385,13 @@ margin-bottom:10px;
 width:100%;
 padding:16px;
 border:none;
-background:#f97316;
+background:#2563eb;
 color:white;
 font-size:17px;
 border-radius:14px;
 cursor:pointer;
 margin-top:15px;
 }
-
-/* CHECKOUT */
-
-.checkout-page{
-position:fixed;
-top:0;
-left:100%;
-width:100%;
-height:100%;
-background:white;
-z-index:2000;
-overflow:auto;
-transition:0.4s;
-}
-
-.checkout-page.active{
-left:0;
-}
-
-.checkout-header{
-padding:20px;
-font-size:25px;
-font-weight:bold;
-border-bottom:1px solid #ddd;
-}
-
-.checkout-content{
-padding:20px;
-}
-
-.payment-box{
-background:#f9f9f9;
-padding:15px;
-border-radius:15px;
-margin-top:20px;
-}
-
-.payment-box h3{
-margin-bottom:10px;
-}
-
-.bottom-checkout{
-position:fixed;
-bottom:0;
-left:0;
-width:100%;
-background:white;
-padding:15px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-box-shadow:0 -2px 10px rgba(0,0,0,0.1);
-}
-
-.bottom-checkout button{
-background:#f97316;
-color:white;
-border:none;
-padding:14px 20px;
-border-radius:12px;
-font-size:16px;
-}
-
-/* MOBILE */
 
 @media(max-width:600px){
 
@@ -371,89 +410,64 @@ height:120px;
 
 <body>
 
-<header>
+<div id="loadingScreen">
 
-<div class="logo">
-Digital Upgrade Store
-</div>
+<div class="loading-content">
 
-<div class="cart-btn" onclick="openCart()">
-<i class="fa-solid fa-cart-shopping"></i>
-<span class="cart-count" id="count">0</span>
-</div>
+<div class="loader"></div>
 
-</header>
-
-<!-- E-WALLET -->
-
-<div class="category">
-
-<h2>Upgrade E-Wallet</h2>
-
-<div class="products" id="ewallet"></div>
-
-</div>
-
-<!-- PPOB -->
-
-<div class="category">
-
-<h2>Upgrade PPOB</h2>
-
-<div class="products" id="ppob"></div>
-
-</div>
-
-<!-- BANK -->
-
-<div class="category">
-
-<h2>Upgrade Bank Digital</h2>
-
-<div class="products" id="bank"></div>
-
-</div>
-
-<!-- PREVIEW -->
-
-<div class="preview" id="preview">
-
-<img id="previewImage">
-
-<div class="preview-content">
-
-<h1 id="previewTitle"></h1>
-
-<div class="preview-price" id="previewPrice"></div>
+<h1>Fahrixz Store</h1>
 
 <p>
-Upgrade premium terpercaya dan proses cepat.
+Upgrade aplikasi pembayaran
+ke premium teraman
 </p>
 
 </div>
 
-<div class="preview-buttons">
+</div>
 
-<button class="add-cart" onclick="addToCart()">
+<header>
+
+<div class="logo">
+Fahrixz Store
+</div>
+
+<div class="cart-btn" onclick="openCart()">
+
 <i class="fa-solid fa-cart-shopping"></i>
-Keranjang
-</button>
 
-<button class="buy-now" onclick="buyNow()">
-Beli Sekarang
-</button>
+<span class="cart-count" id="count">0</span>
 
 </div>
 
+</header>
+
+<div class="category">
+<h2>Upgrade E-Wallet</h2>
+<div class="products" id="ewallet"></div>
 </div>
 
-<!-- CART -->
+<div class="category">
+<h2>Create QRIS</h2>
+<div class="products" id="qris"></div>
+</div>
+
+<div class="category">
+<h2>Upgrade Bank Digital</h2>
+<div class="products" id="bank"></div>
+</div>
 
 <div class="cart" id="cart">
 
 <div class="cart-header">
+
 Keranjang Saya
-<span class="close" onclick="closeCart()">&times;</span>
+
+<span class="close" onclick="closeCart()">
+&times;
+</span>
+
 </div>
 
 <div class="cart-items" id="cartItems"></div>
@@ -461,7 +475,7 @@ Keranjang Saya
 <div class="checkout">
 
 <div class="row">
-<span>Subtotal</span>
+<span>Total Produk</span>
 <span id="subtotal">Rp 0</span>
 </div>
 
@@ -475,66 +489,9 @@ Keranjang Saya
 <b id="total">Rp 0</b>
 </div>
 
-<button class="checkout-btn" onclick="openCheckout()">
-Checkout
-</button>
-
-</div>
-
-</div>
-
-<!-- CHECKOUT -->
-
-<div class="checkout-page" id="checkoutPage">
-
-<div class="checkout-header">
-Checkout
-</div>
-
-<div class="checkout-content">
-
-<div id="checkoutItems"></div>
-
-<div class="payment-box">
-
-<h3>Metode Pembayaran</h3>
-
-<p style="color:green;">
-<i class="fa-brands fa-whatsapp"></i>
-WhatsApp
-</p>
-
-</div>
-
-<div class="payment-box">
-
-<h3>Rincian Pembayaran</h3>
-
-<div class="row">
-<span>Subtotal</span>
-<span id="coSubtotal"></span>
-</div>
-
-<div class="row">
-<span>Biaya Admin</span>
-<span>Rp 500</span>
-</div>
-
-<div class="row">
-<b>Total</b>
-<b id="coTotal"></b>
-</div>
-
-</div>
-
-</div>
-
-<div class="bottom-checkout">
-
-<h2 id="bottomTotal"></h2>
-
-<button onclick="sendWhatsApp()">
-Buat Pesanan
+<button class="checkout-btn"
+onclick="sendWhatsApp()">
+Order Sekarang
 </button>
 
 </div>
@@ -543,11 +500,11 @@ Buat Pesanan
 
 <script>
 
-/* PRODUCTS */
-
 const products = [
 
-/* E-WALLET */
+/* =========================
+E-WALLET
+========================= */
 
 {
 name:"DANA",
@@ -588,7 +545,7 @@ image:"https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_dana_blue.svg"
 name:"iSaku",
 price:35000,
 category:"ewallet",
-image:"https://upload.wikimedia.org/wikipedia/commons/0/0e/ISaku_logo.png"
+image:"https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
 },
 
 {
@@ -598,108 +555,327 @@ category:"ewallet",
 image:"https://upload.wikimedia.org/wikipedia/commons/f/fe/Shopee.svg"
 },
 
-/* PPOB */
-
 {
-name:"Order Kuota",
-price:36000,
-category:"ppob",
-image:"https://cdn-icons-png.flaticon.com/512/1041/1041886.png"
-},
-
-{
-name:"Top Indoku",
-price:36000,
-category:"ppob",
-image:"https://cdn-icons-png.flaticon.com/512/2920/2920349.png"
-},
-
-{
-name:"Top Pulsa",
-price:36000,
-category:"ppob",
+name:"AstraPay",
+price:35000,
+category:"ewallet",
 image:"https://cdn-icons-png.flaticon.com/512/2489/2489756.png"
 },
 
 {
-name:"PPOB Premium",
-price:36000,
-category:"ppob",
-image:"https://cdn-icons-png.flaticon.com/512/891/891462.png"
+name:"Sakuku",
+price:35000,
+category:"ewallet",
+image:"https://cdn-icons-png.flaticon.com/512/891/891419.png"
 },
 
 {
-name:"Agen Digital",
-price:36000,
-category:"ppob",
+name:"MotionPay",
+price:35000,
+category:"ewallet",
+image:"https://cdn-icons-png.flaticon.com/512/3523/3523887.png"
+},
+
+{
+name:"Paytren",
+price:35000,
+category:"ewallet",
 image:"https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
 },
 
 {
-name:"TopUp Center",
-price:36000,
-category:"ppob",
+name:"KasPro",
+price:35000,
+category:"ewallet",
+image:"https://cdn-icons-png.flaticon.com/512/2489/2489756.png"
+},
+
+{
+name:"SpeedCash",
+price:35000,
+category:"ewallet",
+image:"https://cdn-icons-png.flaticon.com/512/3523/3523887.png"
+},
+
+{
+name:"TrueMoney",
+price:35000,
+category:"ewallet",
+image:"https://cdn-icons-png.flaticon.com/512/891/891462.png"
+},
+
+{
+name:"BCA Sakuku Premium",
+price:35000,
+category:"ewallet",
+image:"https://cdn-icons-png.flaticon.com/512/3081/3081559.png"
+},
+
+/* =========================
+QRIS
+========================= */
+
+{
+name:"QRIS Merchant",
+price:45000,
+category:"qris",
+image:"https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+},
+
+{
+name:"QRIS Premium",
+price:45000,
+category:"qris",
+image:"https://cdn-icons-png.flaticon.com/512/2489/2489756.png"
+},
+
+{
+name:"QRIS All Payment",
+price:45000,
+category:"qris",
+image:"https://cdn-icons-png.flaticon.com/512/3523/3523887.png"
+},
+
+{
+name:"QRIS GPN",
+price:45000,
+category:"qris",
+image:"https://cdn-icons-png.flaticon.com/512/891/891419.png"
+},
+
+{
+name:"QRIS Usaha",
+price:45000,
+category:"qris",
+image:"https://cdn-icons-png.flaticon.com/512/891/891462.png"
+},
+
+{
+name:"QRIS DANA Bisnis",
+price:45000,
+category:"qris",
+image:"https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_dana_blue.svg"
+},
+
+{
+name:"QRIS GoBiz",
+price:45000,
+category:"qris",
+image:"https://upload.wikimedia.org/wikipedia/commons/8/86/Gopay_logo.svg"
+},
+
+{
+name:"QRIS Shopee",
+price:45000,
+category:"qris",
+image:"https://upload.wikimedia.org/wikipedia/commons/f/fe/Shopee.svg"
+},
+
+{
+name:"QRIS iSeller",
+price:45000,
+category:"qris",
 image:"https://cdn-icons-png.flaticon.com/512/3081/3081559.png"
 },
 
 {
-name:"PPOB Plus",
-price:36000,
-category:"ppob",
+name:"QRIS Majoo",
+price:45000,
+category:"qris",
+image:"https://cdn-icons-png.flaticon.com/512/1041/1041886.png"
+},
+
+{
+name:"QRIS Kasir Pintar",
+price:45000,
+category:"qris",
+image:"https://cdn-icons-png.flaticon.com/512/2920/2920349.png"
+},
+
+{
+name:"QRIS OY!",
+price:45000,
+category:"qris",
+image:"https://cdn-icons-png.flaticon.com/512/891/891462.png"
+},
+
+{
+name:"QRIS Merchant Pro",
+price:45000,
+category:"qris",
+image:"https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+},
+
+{
+name:"QRIS UMKM",
+price:45000,
+category:"qris",
+image:"https://cdn-icons-png.flaticon.com/512/2489/2489756.png"
+},
+
+{
+name:"QRIS Premium Plus",
+price:45000,
+category:"qris",
 image:"https://cdn-icons-png.flaticon.com/512/3523/3523887.png"
 },
 
-/* BANK */
+/* =========================
+BANK DIGITAL
+========================= */
 
 {
 name:"SeaBank",
-price:39000,
+price:50000,
 category:"bank",
 image:"https://seeklogo.com/images/S/seabank-logo-5124E1B6C7-seeklogo.com.png"
 },
 
 {
 name:"Bank Jago",
-price:39000,
+price:50000,
 category:"bank",
 image:"https://upload.wikimedia.org/wikipedia/commons/8/86/Bank_Jago_logo.svg"
 },
 
 {
 name:"Neo Bank",
-price:39000,
+price:50000,
 category:"bank",
-image:"https://upload.wikimedia.org/wikipedia/commons/6/6f/NeoBank_logo.png"
+image:"https://cdn-icons-png.flaticon.com/512/891/891419.png"
 },
 
 {
 name:"blu BCA",
-price:39000,
+price:50000,
 category:"bank",
 image:"https://cdn-icons-png.flaticon.com/512/2489/2489756.png"
 },
 
 {
 name:"Jenius",
-price:39000,
+price:50000,
 category:"bank",
 image:"https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
 },
 
 {
 name:"PermataME",
-price:39000,
+price:50000,
 category:"bank",
 image:"https://cdn-icons-png.flaticon.com/512/891/891462.png"
+},
+
+{
+name:"Allo Bank",
+price:50000,
+category:"bank",
+image:"https://cdn-icons-png.flaticon.com/512/3523/3523887.png"
+},
+
+{
+name:"Line Bank",
+price:50000,
+category:"bank",
+image:"https://cdn-icons-png.flaticon.com/512/1041/1041886.png"
+},
+
+{
+name:"Bank Saqu",
+price:50000,
+category:"bank",
+image:"https://cdn-icons-png.flaticon.com/512/3081/3081559.png"
+},
+
+{
+name:"MotionBank",
+price:50000,
+category:"bank",
+image:"https://cdn-icons-png.flaticon.com/512/2920/2920349.png"
+},
+
+{
+name:"Digibank",
+price:50000,
+category:"bank",
+image:"https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+},
+
+{
+name:"TMRW",
+price:50000,
+category:"bank",
+image:"https://cdn-icons-png.flaticon.com/512/2489/2489756.png"
+},
+
+{
+name:"OCBC Digital",
+price:50000,
+category:"bank",
+image:"https://cdn-icons-png.flaticon.com/512/3523/3523887.png"
+},
+
+{
+name:"Livin Mandiri",
+price:50000,
+category:"bank",
+image:"https://cdn-icons-png.flaticon.com/512/891/891419.png"
+},
+
+{
+name:"BRImo",
+price:50000,
+category:"bank",
+image:"https://cdn-icons-png.flaticon.com/512/891/891462.png"
+},
+
+{
+name:"BNI Mobile",
+price:50000,
+category:"bank",
+image:"https://cdn-icons-png.flaticon.com/512/3081/3081559.png"
+},
+
+{
+name:"CIMB OCTO",
+price:50000,
+category:"bank",
+image:"https://cdn-icons-png.flaticon.com/512/1041/1041886.png"
+},
+
+{
+name:"Muamalat DIN",
+price:50000,
+category:"bank",
+image:"https://cdn-icons-png.flaticon.com/512/2920/2920349.png"
+},
+
+{
+name:"Danamon D-Bank",
+price:50000,
+category:"bank",
+image:"https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+},
+
+{
+name:"BTN Mobile",
+price:50000,
+category:"bank",
+image:"https://cdn-icons-png.flaticon.com/512/2489/2489756.png"
 }
 
 ];
 
-/* RENDER */
+const ewallet =
+document.getElementById("ewallet");
 
-const ewallet = document.getElementById("ewallet");
-const ppob = document.getElementById("ppob");
-const bank = document.getElementById("bank");
+const qris =
+document.getElementById("qris");
+
+const bank =
+document.getElementById("bank");
+
+let cart = [];
 
 products.forEach((product)=>{
 
@@ -717,14 +893,11 @@ Rp ${product.price.toLocaleString("id-ID")}
 
 <div class="card-buttons">
 
-<button class="preview-btn"
-onclick='previewProduct(${JSON.stringify(product)})'>
-Preview
-</button>
-
 <button class="buy-btn"
-onclick='directBuy(${JSON.stringify(product)})'>
-Beli
+onclick='addToCart(${JSON.stringify(product)})'>
+
+Tambah Keranjang
+
 </button>
 
 </div>
@@ -733,65 +906,34 @@ Beli
 
 `;
 
-if(product.category === "ewallet"){
+if(product.category==="ewallet"){
 ewallet.innerHTML += card;
 }
 
-if(product.category === "ppob"){
-ppob.innerHTML += card;
+if(product.category==="qris"){
+qris.innerHTML += card;
 }
 
-if(product.category === "bank"){
+if(product.category==="bank"){
 bank.innerHTML += card;
 }
 
 });
 
-/* PREVIEW */
-
-let selectedProduct = null;
-let cart = [];
-
-function previewProduct(product){
-
-selectedProduct = product;
-
-document.getElementById("preview").classList.add("active");
-
-document.getElementById("previewImage").src = product.image;
-
-document.getElementById("previewTitle").innerText = product.name;
-
-document.getElementById("previewPrice").innerText =
-"Rp " + product.price.toLocaleString("id-ID");
-
-}
-
-/* CART */
-
-function addToCart(){
-
-cart.push(selectedProduct);
-
-updateCart();
-
-alert("Produk ditambahkan");
-
-}
-
-function directBuy(product){
+function addToCart(product){
 
 cart.push(product);
 
 updateCart();
 
-openCheckout();
+alert(product.name + " berhasil ditambahkan");
 
 }
 
 function updateCart(){
 
-document.getElementById("count").innerText = cart.length;
+document.getElementById("count")
+.innerText = cart.length;
 
 let html = "";
 let subtotal = 0;
@@ -810,8 +952,12 @@ html += `
 
 <h4>${item.name}</h4>
 
-<p>
+<p style="margin-top:8px;
+font-weight:bold;
+color:#2563eb;">
+
 Rp ${item.price.toLocaleString("id-ID")}
+
 </p>
 
 </div>
@@ -822,76 +968,33 @@ Rp ${item.price.toLocaleString("id-ID")}
 
 });
 
-document.getElementById("cartItems").innerHTML = html;
+document.getElementById("cartItems")
+.innerHTML = html;
 
-document.getElementById("subtotal").innerText =
+document.getElementById("subtotal")
+.innerText =
 "Rp " + subtotal.toLocaleString("id-ID");
 
-document.getElementById("total").innerText =
-"Rp " + (subtotal + 500).toLocaleString("id-ID");
+document.getElementById("total")
+.innerText =
+"Rp " + (subtotal + 500)
+.toLocaleString("id-ID");
 
 }
 
-/* OPEN CLOSE */
-
 function openCart(){
-document.getElementById("cart").classList.add("active");
+
+document.getElementById("cart")
+.classList.add("active");
+
 }
 
 function closeCart(){
-document.getElementById("cart").classList.remove("active");
-}
 
-/* CHECKOUT */
-
-function openCheckout(){
-
-document.getElementById("checkoutPage")
-.classList.add("active");
-
-let html = "";
-let subtotal = 0;
-
-cart.forEach((item)=>{
-
-subtotal += item.price;
-
-html += `
-
-<div class="cart-item">
-
-<img src="${item.image}">
-
-<div>
-
-<h4>${item.name}</h4>
-
-<p>
-Rp ${item.price.toLocaleString("id-ID")}
-</p>
-
-</div>
-
-</div>
-
-`;
-
-});
-
-document.getElementById("checkoutItems").innerHTML = html;
-
-document.getElementById("coSubtotal").innerText =
-"Rp " + subtotal.toLocaleString("id-ID");
-
-document.getElementById("coTotal").innerText =
-"Rp " + (subtotal + 500).toLocaleString("id-ID");
-
-document.getElementById("bottomTotal").innerText =
-"Rp " + (subtotal + 500).toLocaleString("id-ID");
+document.getElementById("cart")
+.classList.remove("active");
 
 }
-
-/* WHATSAPP */
 
 function sendWhatsApp(){
 
@@ -909,18 +1012,17 @@ message +=
 
 });
 
-message += `%0ASubtotal : Rp ${subtotal.toLocaleString("id-ID")}`;
+message +=
+`%0ASubtotal : Rp ${subtotal.toLocaleString("id-ID")}`;
 
-message += `%0ABiaya Admin : Rp 500`;
+message +=
+`%0ABiaya Admin : Rp 500`;
 
-message += `%0ATotal : Rp ${(subtotal+500).toLocaleString("id-ID")}`;
-
-/* GANTI NOMOR */
-
-const number = "6287895917725";
+message +=
+`%0ATotal : Rp ${(subtotal+500).toLocaleString("id-ID")}`;
 
 window.open(
-`https://wa.me/${number}?text=${message}`,
+`https://wa.me/6287895917725?text=${message}`,
 "_blank"
 );
 
@@ -929,4 +1031,4 @@ window.open(
 </script>
 
 </body>
-</html>
+  </html>
