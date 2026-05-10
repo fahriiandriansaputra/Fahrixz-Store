@@ -1,19 +1,26 @@
 /* =========================
-LOGIN ADMIN
+FILE : admin.js
 ========================= */
+
+/* LOGIN ADMIN */
 
 function loginAdmin(){
 
-let username =
-document.getElementById("adminUsername").value;
+const username =
+document.getElementById("username").value;
 
-let password =
-document.getElementById("adminPassword").value;
+const password =
+document.getElementById("password").value;
+
+const error =
+document.getElementById("error");
 
 /* USERNAME & PASSWORD */
 
 const adminUser = "admin";
 const adminPass = "fahrixz123";
+
+/* LOGIN VALIDATION */
 
 if(username === adminUser &&
 password === adminPass){
@@ -28,17 +35,28 @@ window.location.href =
 
 }else{
 
-alert(
-"Username atau Password salah!"
-);
+error.innerText =
+"Username atau Password salah!";
 
 }
 
 }
 
-/* =========================
-LOGOUT ADMIN
-========================= */
+/* CHECK LOGIN */
+
+function checkAdmin(){
+
+if(localStorage.getItem("adminLogin")
+!== "true"){
+
+window.location.href =
+"admin.html";
+
+}
+
+}
+
+/* LOGOUT */
 
 function logoutAdmin(){
 
@@ -58,9 +76,7 @@ window.location.href =
 
 }
 
-/* =========================
-DATA STORAGE
-========================= */
+/* DATA STORAGE */
 
 let products =
 JSON.parse(localStorage.getItem("products")) || [];
@@ -71,9 +87,7 @@ JSON.parse(localStorage.getItem("testimonials")) || [];
 let orders =
 JSON.parse(localStorage.getItem("orders")) || [];
 
-/* =========================
-SAVE DATA
-========================= */
+/* SAVE */
 
 function saveProducts(){
 
@@ -102,26 +116,22 @@ JSON.stringify(orders)
 
 }
 
-/* =========================
-ADD PRODUCT
-========================= */
+/* ADD PRODUCT */
 
 function addProduct(){
 
-let productName =
+let name =
 document.getElementById("productName").value;
 
-let productPrice =
+let price =
 document.getElementById("productPrice").value;
 
-let productImage =
+let image =
 document.getElementById("productImage").value;
 
-if(
-productName === "" ||
-productPrice === "" ||
-productImage === ""
-){
+if(name === "" ||
+price === "" ||
+image === ""){
 
 alert("Isi semua data produk!");
 
@@ -129,15 +139,13 @@ return;
 
 }
 
-let newProduct = {
+products.push({
 
-name: productName,
-price: productPrice,
-image: productImage
+name:name,
+price:price,
+image:image
 
-};
-
-products.push(newProduct);
+});
 
 saveProducts();
 
@@ -145,15 +153,9 @@ renderProducts();
 
 alert("Produk berhasil ditambahkan!");
 
-document.getElementById("productName").value = "";
-document.getElementById("productPrice").value = "";
-document.getElementById("productImage").value = "";
-
 }
 
-/* =========================
-RENDER PRODUCT
-========================= */
+/* RENDER PRODUCT */
 
 function renderProducts(){
 
@@ -190,9 +192,7 @@ Hapus
 
 }
 
-/* =========================
-DELETE PRODUCT
-========================= */
+/* DELETE PRODUCT */
 
 function deleteProduct(index){
 
@@ -204,49 +204,38 @@ renderProducts();
 
 }
 
-/* =========================
-ADD TESTIMONIAL
-========================= */
+/* ADD TESTIMONIAL */
 
 function addTestimonial(){
 
-let customer =
+let name =
 document.getElementById("testimonialName").value;
 
 let message =
 document.getElementById("testimonialMessage").value;
 
-if(customer === "" || message === ""){
+if(name === "" || message === ""){
 
-alert("Isi semua testimoni!");
+alert("Isi semua data!");
 
 return;
 
 }
 
-let newTestimonial = {
+testimonials.push({
 
-name: customer,
-message: message
+name:name,
+message:message
 
-};
-
-testimonials.push(newTestimonial);
+});
 
 saveTestimonials();
 
 renderTestimonials();
 
-alert("Testimoni berhasil ditambahkan!");
-
-document.getElementById("testimonialName").value = "";
-document.getElementById("testimonialMessage").value = "";
-
 }
 
-/* =========================
-RENDER TESTIMONIAL
-========================= */
+/* RENDER TESTIMONIAL */
 
 function renderTestimonials(){
 
@@ -281,9 +270,7 @@ Hapus
 
 }
 
-/* =========================
-DELETE TESTIMONIAL
-========================= */
+/* DELETE TESTIMONIAL */
 
 function deleteTestimonial(index){
 
@@ -295,23 +282,7 @@ renderTestimonials();
 
 }
 
-/* =========================
-ORDER SYSTEM
-========================= */
-
-function addOrder(orderData){
-
-orders.push(orderData);
-
-saveOrders();
-
-renderOrders();
-
-}
-
-/* =========================
-RENDER ORDERS
-========================= */
+/* RENDER ORDER */
 
 function renderOrders(){
 
@@ -353,19 +324,19 @@ container.innerHTML += `
 <p>📅 ${order.time}</p>
 
 <img src="${order.proof}"
-class="bukti-pembayaran">
+class="payment-proof">
 
 <div class="order-buttons">
 
 <button class="accept-btn"
-onclick="approveOrder( ${ index } )">
+onclick="approveOrder(${index})">
 
 Setujui
 
 </button>
 
 <button class="reject-btn"
-onclick="rejectOrder( ${ index } )">
+onclick="rejectOrder(${index})">
 
 Tolak
 
@@ -375,57 +346,47 @@ Tolak
 
 </div>
 
-` ;
+`;
 
-} ) ;
-
-}
-
-/* =========================
-SETUJUI PESANAN
-========================= */
-
-fungsi  approveOrder ( indeks ) {
-
-peringatan (
-"Pesanan berhasil disetujui"
-) ;
-
-jendela.buka (​​
-"https://wa.me/6287895917725" ,
-"_kosong"
-) ;
+});
 
 }
 
-/* =========================
-TOLAK PESANAN
-========================= */
+/* APPROVE */
 
-fungsi  rejectOrder ( indeks ) {
+function approveOrder(index){
 
-pesanan.sambung ( indeks , 1 ) ;​​
+alert("Pesanan disetujui");
 
-simpanPesanan ( ) ;
-
-renderOrders ( ) ;
-
-peringatan (
-"Pesanan ditolak"
-) ;
+window.open(
+"https://wa.me/6287895917725",
+"_blank"
+);
 
 }
 
-/* =========================
-MUAT OTOMATIS
-========================= */
+/* REJECT */
 
-jendela.onload = fungsi ( ) {​​
+function rejectOrder(index){
 
-renderProducts ( ) ;
+orders.splice(index,1);
 
-renderTestimonials ( ) ;
+saveOrders();
 
-renderOrders ( ) ;
+renderOrders();
 
-} ;
+alert("Pesanan ditolak");
+
+}
+
+/* AUTO LOAD */
+
+window.onload = function(){
+
+renderProducts();
+
+renderTestimonials();
+
+renderOrders();
+
+};
