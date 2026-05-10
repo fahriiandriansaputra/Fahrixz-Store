@@ -7,16 +7,20 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 <header>
 <div class="logo">Dashboard Admin</div>
-<button class="buy-btn" onclick="logoutAdmin()">Logout</button>
+<button onclick="logoutAdmin()" class="icon-btn">Logout</button>
 </header>
 
-<div class="category">
-<h2>Notifikasi Pesanan</h2>
-<div id="orderList"></div>
-</div>
+<section>
+<h2>Total Pesanan Hari Ini</h2>
+<div class="promo" id="totalOrders">0 Pesanan</div>
+</section>
+
+<section>
+<h2>Order Masuk <span style="background:red;color:#fff;padding:3px 8px;border-radius:50%" id="notifCount">0</span></h2>
+<div id="orders"></div>
+</section>
 
 <script src="admin.js"></script>
 </body>
