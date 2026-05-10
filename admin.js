@@ -1,392 +1,88 @@
-/* =========================
-FILE : admin.js
-========================= */
-
-/* LOGIN ADMIN */
-
 function loginAdmin(){
 
-const username =
-document.getElementById("username").value;
+const username = document.getElementById('username').value;
+const password = document.getElementById('password').value;
 
-const password =
-document.getElementById("password").value;
-
-const error =
-document.getElementById("error");
-
-/* USERNAME & PASSWORD */
-
-const adminUser = "admin";
-const adminPass = "fahrixz123";
-
-/* LOGIN VALIDATION */
-
-if(username === adminUser &&
-password === adminPass){
-
-localStorage.setItem(
-"adminLogin",
-"true"
-);
-
-window.location.href =
-"dashboard.html";
-
+if(username==='admin' && password==='admin123'){
+localStorage.setItem('adminLogin','true');
+window.location.href='dashboard.html';
 }else{
-
-error.innerText =
-"Username atau Password salah!";
-
+alert('Username atau password salah');
 }
-
 }
-
-/* CHECK LOGIN */
-
-function checkAdmin(){
-
-if(localStorage.getItem("adminLogin")
-!== "true"){
-
-window.location.href =
-"admin.html";
-
-}
-
-}
-
-/* LOGOUT */
 
 function logoutAdmin(){
-
-let confirmLogout =
-confirm("Yakin ingin logout?");
-
-if(confirmLogout){
-
-localStorage.removeItem(
-"adminLogin"
-);
-
-window.location.href =
-"admin.html";
-
+localStorage.removeItem('adminLogin');
+window.location.href='admin.html';
 }
 
+if(window.location.pathname.includes('dashboard.html')){
+
+if(localStorage.getItem('adminLogin')!=='true'){
+window.location.href='admin.html';
 }
 
-/* DATA STORAGE */
-
-let products =
-JSON.parse(localStorage.getItem("products")) || [];
-
-let testimonials =
-JSON.parse(localStorage.getItem("testimonials")) || [];
-
-let orders =
-JSON.parse(localStorage.getItem("orders")) || [];
-
-/* SAVE */
-
-function saveProducts(){
-
-localStorage.setItem(
-"products",
-JSON.stringify(products)
-);
-
+loadOrders();
 }
 
-function saveTestimonials(){
+function loadOrders(){
 
-localStorage.setItem(
-"testimonials",
-JSON.stringify(testimonials)
-);
+const orderList = document.getElementById('orderList');
 
-}
+if(!orderList) return;
 
-function saveOrders(){
+let orders = JSON.parse(localStorage.getItem('orders')) || [];
 
-localStorage.setItem(
-"orders",
-JSON.stringify(orders)
-);
-
-}
-
-/* ADD PRODUCT */
-
-function addProduct(){
-
-let name =
-document.getElementById("productName").value;
-
-let price =
-document.getElementById("productPrice").value;
-
-let image =
-document.getElementById("productImage").value;
-
-if(name === "" ||
-price === "" ||
-image === ""){
-
-alert("Isi semua data produk!");
-
-return;
-
-}
-
-products.push({
-
-name:name,
-price:price,
-image:image
-
-});
-
-saveProducts();
-
-renderProducts();
-
-alert("Produk berhasil ditambahkan!");
-
-}
-
-/* RENDER PRODUCT */
-
-function renderProducts(){
-
-let container =
-document.getElementById("adminProductList");
-
-if(!container) return;
-
-container.innerHTML = "";
-
-products.forEach((product,index)=>{
-
-container.innerHTML += `
-
-<div class="admin-product-card">
-
-<img src="${product.image}">
-
-<h3>${product.name}</h3>
-
-<p>Rp ${product.price}</p>
-
-<button onclick="deleteProduct(${index})">
-
-Hapus
-
-</button>
-
-</div>
-
-`;
-
-});
-
-}
-
-/* DELETE PRODUCT */
-
-function deleteProduct(index){
-
-products.splice(index,1);
-
-saveProducts();
-
-renderProducts();
-
-}
-
-/* ADD TESTIMONIAL */
-
-function addTestimonial(){
-
-let name =
-document.getElementById("testimonialName").value;
-
-let message =
-document.getElementById("testimonialMessage").value;
-
-if(name === "" || message === ""){
-
-alert("Isi semua data!");
-
-return;
-
-}
-
-testimonials.push({
-
-name:name,
-message:message
-
-});
-
-saveTestimonials();
-
-renderTestimonials();
-
-}
-
-/* RENDER TESTIMONIAL */
-
-function renderTestimonials(){
-
-let container =
-document.getElementById("testimonialList");
-
-if(!container) return;
-
-container.innerHTML = "";
-
-testimonials.forEach((item,index)=>{
-
-container.innerHTML += `
-
-<div class="testimonial-card">
-
-<h4>${item.name}</h4>
-
-<p>${item.message}</p>
-
-<button onclick="deleteTestimonial(${index})">
-
-Hapus
-
-</button>
-
-</div>
-
-`;
-
-});
-
-}
-
-/* DELETE TESTIMONIAL */
-
-function deleteTestimonial(index){
-
-testimonials.splice(index,1);
-
-saveTestimonials();
-
-renderTestimonials();
-
-}
-
-/* RENDER ORDER */
-
-function renderOrders(){
-
-let container =
-document.getElementById("orderList");
-
-if(!container) return;
-
-container.innerHTML = "";
-
-if(orders.length === 0){
-
-container.innerHTML = `
-
-<div class="empty-order">
-
-Belum ada pesanan masuk
-
-</div>
-
-`;
-
-return;
-
-}
+let html='';
 
 orders.forEach((order,index)=>{
 
-container.innerHTML += `
-
-<div class="order-item">
-
-<h4>${order.product}</h4>
-
-<p>👤 ${order.name}</p>
-
-<p>💳 ${order.payment}</p>
-
-<p>📅 ${order.time}</p>
-
-<img src="${order.proof}"
-class="payment-proof">
-
-<div class="order-buttons">
-
-<button class="accept-btn"
-onclick="approveOrder(${index})">
-
-Setujui
-
+html += `
+<div class="testimonial-card">
+<h3>Pesanan #${index+1}</h3>
+<p>Status : ${order.status}</p>
+<p>Bukti : ${order.proof}</p>
+<br>
+<button class="buy-btn" onclick="approveOrder(${order.id})">
+ACC
 </button>
-
-<button class="reject-btn"
-onclick="rejectOrder(${index})">
-
+<br><br>
+<button class="buy-btn" onclick="rejectOrder(${order.id})">
 Tolak
-
 </button>
-
 </div>
-
-</div>
-
 `;
-
 });
 
+orderList.innerHTML = html;
 }
 
-/* APPROVE */
+function approveOrder(id){
 
-function approveOrder(index){
+let orders = JSON.parse(localStorage.getItem('orders')) || [];
 
-alert("Pesanan disetujui");
+orders = orders.map((order)=>{
+if(order.id===id){
+order.status='approved';
+}
+return order;
+});
 
-window.open(
-"https://wa.me/6287895917725",
-"_blank"
-);
-
+localStorage.setItem('orders',JSON.stringify(orders));
+loadOrders();
 }
 
-/* REJECT */
+function rejectOrder(id){
 
-function rejectOrder(index){
+let orders = JSON.parse(localStorage.getItem('orders')) || [];
 
-orders.splice(index,1);
-
-saveOrders();
-
-renderOrders();
-
-alert("Pesanan ditolak");
-
+orders = orders.map((order)=>{
+if(order.id===id){
+order.status='rejected';
 }
+return order;
+});
 
-/* AUTO LOAD */
-
-window.onload = function(){
-
-renderProducts();
-
-renderTestimonials();
-
-renderOrders();
-
-};
+localStorage.setItem('orders',JSON.stringify(orders));
+loadOrders();
+}
