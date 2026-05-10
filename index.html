@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -11,6 +13,10 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 
 <style>
 
+/* =========================
+RESET
+========================= */
+
 *{
 margin:0;
 padding:0;
@@ -19,8 +25,9 @@ font-family:Arial,sans-serif;
 }
 
 body{
-background:#ffffff;
-animation:fadeWebsite 2s ease;
+background:#f8fafc;
+animation:fadeWebsite 1.5s ease;
+transition:0.3s;
 }
 
 /* WEBSITE ANIMATION */
@@ -29,7 +36,7 @@ animation:fadeWebsite 2s ease;
 
 from{
 opacity:0;
-transform:translateY(30px);
+transform:translateY(20px);
 }
 
 to{
@@ -39,7 +46,9 @@ transform:translateY(0);
 
 }
 
-/* LOADING */
+/* =========================
+LOADING SCREEN
+========================= */
 
 #loadingScreen{
 position:fixed;
@@ -52,27 +61,13 @@ display:flex;
 justify-content:center;
 align-items:center;
 z-index:99999;
-animation:hideLoading 3s forwards;
+animation:hideLoading 1s forwards;
 animation-delay:3s;
 }
 
 .loading-content{
 text-align:center;
 color:white;
-animation:zoomIn 1s ease;
-}
-
-.loading-content h1{
-font-size:38px;
-margin-top:20px;
-font-weight:bold;
-}
-
-.loading-content p{
-margin-top:10px;
-font-size:16px;
-opacity:0.8;
-line-height:1.6;
 }
 
 .loader{
@@ -81,8 +76,18 @@ height:80px;
 border:8px solid rgba(255,255,255,0.2);
 border-top:8px solid #2563eb;
 border-radius:50%;
-animation:spin 4s linear infinite;
+animation:spin 1s linear infinite;
 margin:auto;
+}
+
+.loading-content h1{
+margin-top:20px;
+font-size:35px;
+}
+
+.loading-content p{
+margin-top:10px;
+opacity:0.8;
 }
 
 @keyframes spin{
@@ -91,35 +96,19 @@ transform:rotate(360deg);
 }
 }
 
-@keyframes zoomIn{
-
-from{
-opacity:0;
-transform:scale(0.7);
-}
-
-to{
-opacity:1;
-transform:scale(1);
-}
-
-}
-
 @keyframes hideLoading{
-
 to{
 opacity:0;
 visibility:hidden;
 }
-
 }
 
-/* HEADER */
-
-  <style>
+/* =========================
+HEADER
+========================= */
 
 header{
-background:#ffffff;
+background:white;
 padding:15px;
 display:flex;
 justify-content:space-between;
@@ -154,36 +143,23 @@ padding:3px 7px;
 border-radius:50%;
 }
 
-/* TOTAL STOK PRODUK */
-
-.stock-box{
-margin:20px;
-background:#eff6ff;
-padding:15px;
-border-radius:15px;
-font-size:18px;
-font-weight:bold;
-color:#1e3a8a;
-text-align:center;
-border:1px solid #bfdbfe;
-box-shadow:0 2px 8px rgba(0,0,0,0.05);
-}
-
-/* PROMO */
+/* =========================
+PROMO
+========================= */
 
 .promo-banner{
 margin:20px;
 background:#2563eb;
 color:white;
-padding:14px;
+padding:15px;
 text-align:center;
 border-radius:15px;
 font-weight:bold;
-font-size:16px;
-box-shadow:0 3px 10px rgba(0,0,0,0.1);
 }
 
-/* INFO */
+/* =========================
+INFO
+========================= */
 
 .info-box{
 margin:20px;
@@ -191,13 +167,14 @@ background:#eff6ff;
 padding:15px;
 border-radius:15px;
 text-align:center;
-font-size:15px;
 font-weight:bold;
 color:#1e3a8a;
 line-height:1.8;
 }
 
-/* SEARCH */
+/* =========================
+SEARCH
+========================= */
 
 .search-box{
 margin:20px;
@@ -208,118 +185,28 @@ width:100%;
 padding:14px;
 border-radius:15px;
 border:1px solid #bfdbfe;
-font-size:16px;
 outline:none;
-}
-
-/* POPUP ORDER */
-
-.popup-order{
-position:fixed;
-bottom:20px;
-left:20px;
-background:#2563eb;
-color:white;
-<!-- =========================
-STYLE PREMIUM
-========================= -->
-
-<style>
-
-header{
-background:#ffffff;
-padding:15px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-position:sticky;
-top:0;
-z-index:100;
-box-shadow:0 2px 10px rgba(0,0,0,0.08);
-}
-
-.logo{
-font-size:22px;
-font-weight:bold;
-color:#2563eb;
-}
-
-.cart-btn{
-position:relative;
-font-size:24px;
-cursor:pointer;
-color:#2563eb;
-}
-
-.cart-count{
-position:absolute;
-top:-8px;
-right:-8px;
-background:#2563eb;
-color:white;
-font-size:12px;
-padding:3px 7px;
-border-radius:50%;
-}
-
-/* PROMO */
-
-.promo-banner{
-margin:20px;
-background:#2563eb;
-color:white;
-padding:14px;
-text-align:center;
-border-radius:15px;
-font-weight:bold;
-font-size:16px;
-box-shadow:0 3px 10px rgba(0,0,0,0.1);
-}
-
-/* INFO */
-
-.info-box{
-margin:20px;
-background:#eff6ff;
-padding:15px;
-border-radius:15px;
-text-align:center;
 font-size:15px;
-font-weight:bold;
-color:#1e3a8a;
-line-height:1.8;
 }
 
-/* SEARCH */
-
-.search-box{
-margin:20px;
-}
-
-.search-box input{
-width:100%;
-padding:14px;
-border-radius:15px;
-border:1px solid #bfdbfe;
-font-size:16px;
-outline:none;
-}
-
-/* STOCK */
+/* =========================
+STOCK
+========================= */
 
 .stock-box{
 margin:20px;
 background:#eff6ff;
 padding:15px;
 border-radius:15px;
-font-size:18px;
+text-align:center;
 font-weight:bold;
 color:#1e3a8a;
-text-align:center;
 border:1px solid #bfdbfe;
 }
 
-/* LIVE STATS */
+/* =========================
+LIVE STATS
+========================= */
 
 .live-stats{
 display:grid;
@@ -335,12 +222,13 @@ border-radius:18px;
 text-align:center;
 box-shadow:0 3px 10px rgba(0,0,0,0.05);
 border:1px solid #dbeafe;
-font-size:15px;
 color:#1e3a8a;
 line-height:1.7;
 }
 
-/* COUNTDOWN */
+/* =========================
+COUNTDOWN
+========================= */
 
 .countdown-box{
 margin:20px;
@@ -358,7 +246,9 @@ font-size:28px;
 letter-spacing:3px;
 }
 
-/* SLIDER */
+/* =========================
+SLIDER
+========================= */
 
 .slider-banner{
 overflow:hidden;
@@ -379,15 +269,124 @@ min-width:280px;
 padding:0 20px;
 font-weight:bold;
 color:#2563eb;
-font-size:16px;
 }
 
 @keyframes slideMove{
-0%{transform:translateX(0);}
-100%{transform:translateX(-50%);}
+
+0%{
+transform:translateX(0);
 }
 
-/* FLOATING WA */
+100%{
+transform:translateX(-50%);
+}
+
+}
+
+/* =========================
+PRODUCT
+========================= */
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+gap:18px;
+margin:20px;
+}
+
+.card{
+background:white;
+border-radius:20px;
+padding:15px;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+transition:0.3s;
+position:relative;
+overflow:hidden;
+}
+
+.card:hover{
+transform:translateY(-6px);
+}
+
+.card img{
+width:100%;
+height:120px;
+object-fit:cover;
+border-radius:15px;
+}
+
+.card h3{
+margin-top:12px;
+font-size:17px;
+color:#1e3a8a;
+}
+
+.price{
+margin-top:8px;
+font-size:18px;
+font-weight:bold;
+color:#2563eb;
+}
+
+.buy-btn{
+margin-top:12px;
+width:100%;
+padding:12px;
+border:none;
+background:#2563eb;
+color:white;
+border-radius:12px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.buy-btn:hover{
+background:#1d4ed8;
+}
+
+.badge{
+position:absolute;
+top:12px;
+left:12px;
+background:#f59e0b;
+color:white;
+padding:5px 10px;
+border-radius:10px;
+font-size:12px;
+font-weight:bold;
+}
+
+/* =========================
+TESTIMONI
+========================= */
+
+.testimonial-box{
+margin:20px;
+background:white;
+padding:20px;
+border-radius:20px;
+box-shadow:0 4px 10px rgba(0,0,0,0.05);
+}
+
+.testimonial-title{
+font-size:22px;
+font-weight:bold;
+margin-bottom:15px;
+color:#1e3a8a;
+}
+
+.testimonial{
+background:#eff6ff;
+padding:15px;
+border-radius:15px;
+margin-bottom:12px;
+line-height:1.7;
+color:#1e3a8a;
+}
+
+/* =========================
+FLOATING WA
+========================= */
 
 .wa-float{
 position:fixed;
@@ -407,7 +406,28 @@ box-shadow:0 4px 10px rgba(0,0,0,0.2);
 z-index:9999;
 }
 
-/* POPUP */
+/* =========================
+DARK MODE BUTTON
+========================= */
+
+.dark-btn{
+position:fixed;
+bottom:160px;
+right:20px;
+width:55px;
+height:55px;
+border:none;
+border-radius:50%;
+background:#111827;
+color:white;
+font-size:22px;
+cursor:pointer;
+z-index:9999;
+}
+
+/* =========================
+POPUP
+========================= */
 
 .popup-order{
 position:fixed;
@@ -420,13 +440,79 @@ border-radius:15px;
 font-size:14px;
 font-weight:bold;
 z-index:9999;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* =========================
+FOOTER
+========================= */
+
+footer{
+margin-top:40px;
+background:#0f172a;
+color:white;
+padding:30px 20px;
+text-align:center;
+}
+
+footer h3{
+font-size:22px;
+margin-bottom:10px;
+}
+
+footer p{
+margin-top:8px;
+opacity:0.8;
+line-height:1.8;
+}
+
+/* =========================
+DARK MODE
+========================= */
+
+.dark-mode{
+background:#0f172a;
+}
+
+.dark-mode .card,
+.dark-mode .testimonial-box,
+.dark-mode .stat-card,
+.dark-mode .info-box,
+.dark-mode .stock-box{
+background:#1e293b;
+color:white;
+border:none;
+}
+
+.dark-mode .card h3,
+.dark-mode .testimonial,
+.dark-mode .testimonial-title{
+color:white;
 }
 
 </style>
 
-<!-- =========================
-HEADER
-========================= -->
+</head>
+
+<body>
+
+<!-- LOADING -->
+
+<div id="loadingScreen">
+
+<div class="loading-content">
+
+<div class="loader"></div>
+
+<h1>Fahrixz Store</h1>
+
+<p>Loading Website Premium...</p>
+
+</div>
+
+</div>
+
+<!-- HEADER -->
 
 <header>
 
@@ -434,7 +520,7 @@ HEADER
 Fahrixz Store
 </div>
 
-<div class="cart-btn" onclick="openCart()">
+<div class="cart-btn">
 
 <i class="fa-solid fa-cart-shopping"></i>
 
@@ -539,6 +625,105 @@ Rating Pelanggan
 
 </div>
 
+<!-- PRODUK -->
+
+<div class="products">
+
+<div class="card">
+
+<div class="badge">
+BEST SELLER
+</div>
+
+<img src="https://i.imgur.com/8Km9tLL.jpg">
+
+<h3>QRIS Merchant</h3>
+
+<div class="price">
+Rp 35.000
+</div>
+
+<button class="buy-btn">
+Beli Sekarang
+</button>
+
+</div>
+
+<div class="card">
+
+<img src="https://i.imgur.com/G7bJi6I.jpg">
+
+<h3>DANA Premium</h3>
+
+<div class="price">
+Rp 25.000
+</div>
+
+<button class="buy-btn">
+Beli Sekarang
+</button>
+
+</div>
+
+<div class="card">
+
+<div class="badge">
+HOT
+</div>
+
+<img src="https://i.imgur.com/B7s8F6F.jpg">
+
+<h3>SeaBank Premium</h3>
+
+<div class="price">
+Rp 45.000
+</div>
+
+<button class="buy-btn">
+Beli Sekarang
+</button>
+
+</div>
+
+</div>
+
+<!-- TESTIMONI -->
+
+<div class="testimonial-box">
+
+<div class="testimonial-title">
+⭐ Testimoni Pelanggan
+</div>
+
+<div class="testimonial">
+"Pelayanan cepat dan terpercaya."
+<br><br>
+<b>- Rizky, Jakarta</b>
+</div>
+
+<div class="testimonial">
+"Harga murah dan admin ramah."
+<br><br>
+<b>- Andi, Bandung</b>
+</div>
+
+<div class="testimonial">
+"Sudah order berkali-kali dan aman."
+<br><br>
+<b>- Fajar, Surabaya</b>
+</div>
+
+</div>
+
+<!-- DARK MODE -->
+
+<button class="dark-btn"
+onclick="toggleDarkMode()">
+
+🌙
+
+</button>
+
 <!-- FLOATING WA -->
 
 <a href="https://wa.me/6287895917725"
@@ -549,9 +734,37 @@ target="_blank">
 
 </a>
 
+<!-- FOOTER -->
+
+<footer>
+
+<h3>
+Fahrixz Store
+</h3>
+
+<p>
+Website Upgrade Premium Terpercaya
+</p>
+
+<p>
+📞 WhatsApp: 0878-9591-7725
+</p>
+
+<p>
+🕒 Online 24 Jam
+</p>
+
+<p>
+© 2026 Fahrixz Store
+</p>
+
+</footer>
+
 <!-- JAVASCRIPT -->
 
 <script>
+
+/* SEARCH */
 
 function searchProduct(){
 
@@ -564,19 +777,30 @@ document.querySelectorAll(".card");
 
 cards.forEach((card)=>{
 
-let title =
-card.querySelector("h3")
-.innerText.toLowerCase();
+let title = card.querySelector("h3");
 
-if(title.includes(input)){
+if(title){
+
+let text =
+title.innerText.toLowerCase();
+
+if(text.includes(input)){
+
 card.style.display="block";
+
 }else{
+
 card.style.display="none";
+
+}
+
 }
 
 });
 
 }
+
+/* POPUP ORDER */
 
 const orders = [
 
@@ -598,9 +822,11 @@ document.getElementById("popupOrder")
 
 },4000);
 
+/* COUNTDOWN */
+
 let time = 8109;
 
-setInterval(()=>{
+const countdown = setInterval(()=>{
 
 let hours =
 Math.floor(time / 3600);
@@ -619,12 +845,32 @@ ${String(minutes).padStart(2,"0")} :
 ${String(seconds).padStart(2,"0")}`;
 
 if(time > 0){
+
 time--;
+
+}else{
+
+clearInterval(countdown);
+
+document.getElementById("countdown")
+.innerText = "PROMO BERAKHIR";
+
 }
 
 },1000);
 
+/* DARK MODE */
+
+function toggleDarkMode(){
+
+document.body.classList.toggle("dark-mode");
+
+}
+
 </script>
+
+</body>
+  </html>
 
 /* PRODUCTS */
 
