@@ -1,59 +1,345 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard Admin</title>
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Admin Panel - Fahrixz Store</title>
+
 <link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+<style>
+
+/* ADMIN PAGE */
+
+.admin-page{
+min-height:100vh;
+background:#f1f5f9;
+padding:20px;
+}
+
+/* TOPBAR */
+
+.admin-topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:white;
+padding:18px 20px;
+border-radius:20px;
+box-shadow:0 3px 10px rgba(0,0,0,0.05);
+margin-bottom:20px;
+}
+
+.admin-topbar h1{
+font-size:28px;
+color:#2563eb;
+}
+
+.logout-btn{
+background:#ef4444;
+color:white;
+border:none;
+padding:12px 18px;
+border-radius:12px;
+cursor:pointer;
+font-weight:bold;
+font-size:14px;
+transition:0.3s;
+}
+
+.logout-btn:hover{
+background:#dc2626;
+}
+
+/* STATS */
+
+.admin-stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
+margin-bottom:25px;
+}
+
+.admin-card{
+background:white;
+padding:22px;
+border-radius:20px;
+box-shadow:0 3px 10px rgba(0,0,0,0.05);
+border:1px solid #dbeafe;
+}
+
+.admin-card h2{
+font-size:34px;
+color:#2563eb;
+margin-bottom:10px;
+}
+
+.admin-card p{
+font-size:15px;
+color:#64748b;
+font-weight:bold;
+}
+
+/* ORDER BOX */
+
+.order-box{
+background:white;
+padding:20px;
+border-radius:20px;
+box-shadow:0 3px 10px rgba(0,0,0,0.05);
+margin-bottom:20px;
+border:1px solid #dbeafe;
+}
+
+.order-box h3{
+font-size:22px;
+margin-bottom:20px;
+color:#1e3a8a;
+}
+
+/* ORDER ITEM */
+
+.order-item{
+background:#f8fafc;
+padding:18px;
+border-radius:18px;
+margin-bottom:15px;
+border:1px solid #dbeafe;
+}
+
+.order-item h4{
+color:#2563eb;
+margin-bottom:8px;
+}
+
+.order-item p{
+margin-bottom:8px;
+color:#475569;
+font-size:14px;
+}
+
+.payment-proof{
+width:100%;
+max-width:260px;
+border-radius:14px;
+margin-top:10px;
+border:2px solid #dbeafe;
+}
+
+/* BUTTONS */
+
+.order-buttons{
+display:flex;
+gap:10px;
+margin-top:15px;
+}
+
+.accept-btn{
+flex:1;
+background:#22c55e;
+color:white;
+border:none;
+padding:12px;
+border-radius:12px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.reject-btn{
+flex:1;
+background:#ef4444;
+color:white;
+border:none;
+padding:12px;
+border-radius:12px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.accept-btn:hover{
+background:#16a34a;
+}
+
+.reject-btn:hover{
+background:#dc2626;
+}
+
+/* EMPTY */
+
+.empty-order{
+text-align:center;
+padding:30px;
+color:#94a3b8;
+font-weight:bold;
+}
+
+</style>
+
 </head>
+
 <body>
 
-<header>
-<div class="logo">Dashboard Admin</div>
-</header>
+<div class="admin-page">
 
-<div class="live-stats">
+<!-- TOPBAR -->
 
-<div class="stat-card">
-💰 <b>Rp 12.540.000</b><br>
-Pendapatan Hari Ini
-</div>
+<div class="admin-topbar">
 
-<div class="stat-card">
-🛒 <b>284</b><br>
-Pesanan Masuk
-</div>
+<h1>
+<i class="fa-solid fa-shield-halved"></i>
+Admin Dashboard
+</h1>
 
-<div class="stat-card">
-👥 <b>1.482</b><br>
-Pengunjung
-</div>
+<button class="logout-btn"
+onclick="logoutAdmin()">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+Logout
+
+</button>
 
 </div>
 
-<div class="products">
+<!-- STATS -->
 
-<div class="card">
-<h3>Tambah Produk</h3>
-<input type="text" placeholder="Nama Produk" style="width:100%;padding:10px;margin-top:10px;">
-<input type="number" placeholder="Harga" style="width:100%;padding:10px;margin-top:10px;">
-<button style="margin-top:10px;">Tambah Produk</button>
-</div>
+<div class="admin-stats">
 
-<div class="card">
-<h3>Kelola Testimoni</h3>
-<textarea placeholder="Tambah testimoni" style="width:100%;height:120px;padding:10px;margin-top:10px;"></textarea>
-<button style="margin-top:10px;">Upload Testimoni</button>
-</div>
+<div class="admin-card">
 
-<div class="card">
-<h3>Pesanan Masuk</h3>
-<p>QRIS Merchant - Rizky</p>
-<p>DANA Premium - Andi</p>
-<p>SeaBank - Fajar</p>
-</div>
+<h2 id="todayOrders">24</h2>
+
+<p>📦 Total Pesanan Hari Ini</p>
 
 </div>
+
+<div class="admin-card">
+
+<h2 id="incomingOrders">8</h2>
+
+<p>🛒 Order Masuk</p>
+
+</div>
+
+<div class="admin-card">
+
+<h2 id="totalIncome">
+Rp 3.250.000
+</h2>
+
+<p>💰 Pendapatan Hari Ini</p>
+
+</div>
+
+</div>
+
+<!-- ORDER -->
+
+<div class="order-box">
+
+<h3>
+🔔 Notifikasi Order Masuk
+</h3>
+
+<div id="orderList">
+
+<!-- ORDER ITEM -->
+
+<div class="order-item">
+
+<h4>
+QRIS Merchant Premium
+</h4>
+
+<p>
+👤 Nama: Rizky
+</p>
+
+<p>
+💳 Pembayaran: QRIS Manual
+</p>
+
+<p>
+📅 Jam Order: 04:20 WIB
+</p>
+
+<p>
+📎 Bukti Pembayaran:
+</p>
+
+<img src="qris.jpg"
+class="payment-proof">
+
+<div class="order-buttons">
+
+<button class="accept-btn"
+onclick="acceptOrder('Rizky')">
+
+✅ Setujui
+
+</button>
+
+<button class="reject-btn"
+onclick="rejectOrder()">
+
+❌ Tolak
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="admin.js"></script>
+
+<script>
+
+/* LOGIN PROTECTION */
+
+if(localStorage.getItem("adminLogin") !== "true"){
+
+window.location.href = "admin.html";
+
+}
+
+/* ACCEPT ORDER */
+
+function acceptOrder(name){
+
+alert(
+"Pesanan " + name + " berhasil disetujui"
+);
+
+window.open(
+"https://wa.me/6287895917725?text=Halo%20"+name+"%20pesanan%20anda%20sudah%20disetujui",
+"_blank"
+);
+
+}
+
+/* REJECT ORDER */
+
+function rejectOrder(){
+
+alert("Pesanan berhasil ditolak");
+
+}
+
+</script>
 
 </body>
-</html>
+
+  </html>
