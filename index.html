@@ -52,8 +52,8 @@ display:flex;
 justify-content:center;
 align-items:center;
 z-index:99999;
-animation:hideLoading 1s forwards;
-animation-delay:1s;
+animation:hideLoading 3s forwards;
+animation-delay:3s;
 }
 
 .loading-content{
@@ -81,7 +81,7 @@ height:80px;
 border:8px solid rgba(255,255,255,0.2);
 border-top:8px solid #2563eb;
 border-radius:50%;
-animation:spin 1s linear infinite;
+animation:spin 4s linear infinite;
 margin:auto;
 }
 
@@ -115,6 +115,8 @@ visibility:hidden;
 }
 
 /* HEADER */
+
+  <style>
 
 header{
 background:#ffffff;
@@ -152,16 +154,160 @@ padding:3px 7px;
 border-radius:50%;
 }
 
-/* CATEGORY */
+/* TOTAL STOK PRODUK */
 
-.category{
-padding:20px;
-}
-
-.category h2{
-margin-bottom:15px;
+.stock-box{
+margin:20px;
+background:#eff6ff;
+padding:15px;
+border-radius:15px;
+font-size:18px;
+font-weight:bold;
 color:#1e3a8a;
+text-align:center;
+border:1px solid #bfdbfe;
+box-shadow:0 2px 8px rgba(0,0,0,0.05);
 }
+
+/* PROMO */
+
+.promo-banner{
+margin:20px;
+background:#2563eb;
+color:white;
+padding:14px;
+text-align:center;
+border-radius:15px;
+font-weight:bold;
+font-size:16px;
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* INFO */
+
+.info-box{
+margin:20px;
+background:#eff6ff;
+padding:15px;
+border-radius:15px;
+text-align:center;
+font-size:15px;
+font-weight:bold;
+color:#1e3a8a;
+line-height:1.8;
+}
+
+/* SEARCH */
+
+.search-box{
+margin:20px;
+}
+
+.search-box input{
+width:100%;
+padding:14px;
+border-radius:15px;
+border:1px solid #bfdbfe;
+font-size:16px;
+outline:none;
+}
+
+/* POPUP ORDER */
+
+.popup-order{
+position:fixed;
+bottom:20px;
+left:20px;
+background:#2563eb;
+color:white;
+padding:14px 18px;
+border-radius:15px;
+font-size:14px;
+font-weight:bold;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+animation:popupFade 4s infinite;
+z-index:9999;
+}
+
+@keyframes popupFade{
+
+0%{
+opacity:0;
+transform:translateY(30px);
+}
+
+15%{
+opacity:1;
+transform:translateY(0);
+}
+
+85%{
+opacity:1;
+transform:translateY(0);
+}
+
+100%{
+opacity:0;
+transform:translateY(30px);
+}
+
+}
+
+</style>
+
+<header>
+
+<div class="logo">
+Fahrixz Store
+</div>
+
+<div class="cart-btn" onclick="openCart()">
+
+<i class="fa-solid fa-cart-shopping"></i>
+
+<span class="cart-count" id="count">0</span>
+
+</div>
+
+</header>
+
+<!-- BANNER PROMO -->
+
+<div class="promo-banner">
+🔥 Promo Hari Ini — Upgrade Premium Mulai 35K
+</div>
+
+<!-- INFO TOKO -->
+
+<div class="info-box">
+⭐ 4.9/5 • 12.842 Transaksi Berhasil <br>
+⚡ Proses 1–5 Menit • 🔒 Aman & Bergaransi
+</div>
+
+<!-- SEARCH PRODUK -->
+
+<div class="search-box">
+
+<input type="text"
+id="searchInput"
+placeholder="Cari produk..."
+onkeyup="searchProduct()">
+
+</div>
+
+<!-- POPUP ORDER -->
+
+<div class="popup-order" id="popupOrder">
+🔥 Rizky dari Jakarta baru saja membeli QRIS Merchant
+</div>
+
+<!-- TOTAL STOK -->
+
+<div class="stock-box">
+Total Stok Produk: <b>562.864</b>
+</div>
+
+<div class="category">
 
 /* PRODUCTS */
 
