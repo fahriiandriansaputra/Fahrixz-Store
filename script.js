@@ -77,16 +77,6 @@ function sendChat(){
   }
 }
 
-if(username === "fahrixz" &&
-password === "Fahrixz56@"){
-    
-    alert("Login Admin Berhasil");
-    
-}else{
-    
-    alert("Username atau Password salah");
-}
-
 function openLogin(){
   document.getElementById("loginModal").classList.add("active");
 }
