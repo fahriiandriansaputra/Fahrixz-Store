@@ -1,354 +1,298 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport"
-content="width=device-width, initial-scale=1">
+content="width=device-width,initial-scale=1">
 
-<title>Fahri Store</title>
+<title>FAHRIXZ STORE</title>
 
-<style>
+<link rel="stylesheet"
+href="style.css">
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
-body{
-background:#0f1117;
-color:white;
-}
-
-/* HEADER */
-
-header{
-text-align:center;
-padding:40px 20px;
-background:#141824;
-}
-
-.logo{
-width:110px;
-height:110px;
-border-radius:50%;
-border:3px solid #00ff88;
-object-fit:cover;
-box-shadow:0 0 20px #00ff88;
-}
-
-h1{
-margin-top:15px;
-}
-
-.sub{
-color:#aaa;
-margin-top:10px;
-}
-
-/* PRODUK */
-
-.container{
-max-width:1100px;
-margin:auto;
-padding:30px 20px;
-}
-
-.grid{
-display:grid;
-grid-template-columns:
-repeat(auto-fit,minmax(250px,1fr));
-
-gap:20px;
-}
-
-.card{
-
-background:#1a1d26;
-padding:20px;
-border-radius:18px;
-transition:.3s;
-}
-
-.card:hover{
-
-transform:translateY(-8px);
-box-shadow:
-0 0 20px rgba(0,255,136,.3);
-
-}
-
-.price{
-
-font-size:30px;
-font-weight:bold;
-color:#00ff88;
-
-margin:15px 0;
-}
-
-button{
-
-width:100%;
-padding:12px;
-
-border:none;
-border-radius:10px;
-
-background:#25D366;
-color:white;
-
-font-size:16px;
-cursor:pointer;
-}
-
-button:hover{
-
-opacity:.9;
-
-}
-
-/* PAKET */
-
-.paket{
-
-background:
-linear-gradient(
-135deg,
-#00ff88,
-#00b86b);
-
-padding:25px;
-
-border-radius:20px;
-color:black;
-font-weight:bold;
-
-}
-
-/* FOOTER */
-
-footer{
-
-padding:25px;
-text-align:center;
-
-color:#888;
-}
-
-</style>
 </head>
 
 
 <body>
 
+
+<div id="loading">
+
+<div class="loader"></div>
+
+</div>
+
+
+
 <header>
 
-<!-- Logo profil YouTube -->
-<img class="logo"
-src="https://yt3.googleusercontent.com/ytc/AIdro_k=s176-c-k-c0x00ffffff-no-rj"
-alt="logo">
+<h1>
 
-<h1>FAHRI STORE</h1>
+FAHRIXZ STORE
 
-<p class="sub">
-Upgrade E-Wallet Cepat • Aman • Terpercaya
-</p>
+</h1>
+
+
+<div class="top">
+
+<input
+id="search"
+
+placeholder="Cari produk...">
+
+
+<button
+class="cartBtn"
+
+onclick="openCart()">
+
+🛒
+<span id="cartCount">
+
+0
+
+</span>
+
+</button>
+
+
+</div>
 
 </header>
 
 
 
-<div class="container">
 
-<h2>Produk Upgrade</h2>
-<br>
+<div class="banner">
 
-<div class="grid">
+<img
+src="img/banner1.jpg">
 
-
-<div class="card">
-
-<h3>Dana Premium</h3>
-
-<div class="price">
-Rp35K
 </div>
 
-<button
-onclick="window.open('https://wa.me/6287895917725?text=Saya%20ingin%20order%20Dana%20Premium')">
 
-Pesan Sekarang
+
+
+<section id="home">
+
+<h2>
+
+Upgrade E-Wallet
+
+</h2>
+
+<div
+class="produk"
+
+id="produk">
+
+</div>
+
+
+
+<h2>
+
+Top Up Game
+
+</h2>
+
+<div
+
+class="produk"
+
+id="game">
+
+</div>
+
+</section>
+
+
+
+
+<section
+id="cartPage">
+
+<h2>
+
+Keranjang
+
+</h2>
+
+<div id="cartItem">
+
+</div>
+
+<h3>
+
+Subtotal :
+
+Rp
+
+<span id="subtotal">
+
+0
+
+</span>
+
+</h3>
+
+
+<button
+class="buy"
+
+onclick="checkout()">
+
+Checkout
 
 </button>
 
-</div>
+</section>
 
 
 
-<div class="card">
 
-<h3>Dana Bisnis</h3>
+<section id="cuan">
 
-<div class="price">
-Rp45K
-</div>
+<h2>
 
-<button
-onclick="window.open('https://wa.me/6287895917725?text=Saya%20ingin%20order%20Dana%20Bisnis')">
+Cari Cuan
 
-Pesan Sekarang
-
-</button>
-
-</div>
+</h2>
 
 
+<div class="saldo">
 
-<div class="card">
+Saldo:
 
-<h3>OVO Premier</h3>
+Rp
 
-<div class="price">
-Rp35K
-</div>
+<span id="saldoText">
 
-<button
-onclick="window.open('https://wa.me/6287895917725?text=Saya%20ingin%20order%20OVO%20Premier')">
+0
 
-Pesan Sekarang
-
-</button>
+</span>
 
 </div>
 
 
 
-<div class="card">
+<div class="task">
 
-<h3>LinkAja Premium</h3>
+Install APK
 
-<div class="price">
-Rp35K
-</div>
+Reward:
 
-<button
-onclick="window.open('https://wa.me/6287895917725?text=Saya%20ingin%20order%20LinkAja')">
-
-Pesan Sekarang
-
-</button>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>GoPay Plus</h3>
-
-<div class="price">
-Rp35K
-</div>
-
-<button
-onclick="window.open('https://wa.me/6287895917725?text=Saya%20ingin%20order%20GoPay')">
-
-Pesan Sekarang
-
-</button>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>Order Kuota Premium</h3>
-
-<div class="price">
-Rp35K
-</div>
-
-<button
-onclick="window.open('https://wa.me/6287895917725?text=Saya%20ingin%20order%20Order%20Kuota')">
-
-Pesan Sekarang
-
-</button>
-
-</div>
-
-
-
-<div class="card">
-
-<h3>Top Indo Premium</h3>
-
-<div class="price">
-Rp35K
-</div>
-
-<button
-onclick="window.open('https://wa.me/6287895917725?text=Saya%20ingin%20order%20Top%20Indo')">
-
-Pesan Sekarang
-
-</button>
-
-</div>
-
-
-</div>
-
+Rp5000
 
 <br><br>
 
-<h2>Paket Hemat</h2>
+<input
+type="file"
 
-<br>
+id="bukti">
 
-<div class="grid">
 
-<div class="paket">
+<button
+onclick="claimTask()">
 
-PAKET HEMAT — Rp80K
-
-<br><br>
-
-✔ Dana<br>
-✔ OVO<br>
-✔ GoPay
-
-<br><br>
-
-<button onclick="
-window.open(
-'https://wa.me/6287895917725?text=Saya%20ingin%20order%20PAKET%20HEMAT'
-)">
-
-Pesan
+Kirim Bukti
 
 </button>
 
 </div>
 
+</section>
 
 
-<div class="paket">
 
-PAKET STANDAR — Rp130K
 
-<br><br>
+<div
+id="detail"
 
-✔ Dana<br>
-✔ GoPay<br>
-✔ LinkAja<br>
-✔ Order Kuota
+class="popup">
 
-<br><br>
+<div
+class="detailBox">
 
-<button onclick="
-window.open(
-'https://wa.me/6287895917725
+<img
+id="detailImg">
+
+
+<h2
+id="detailNama">
+
+</h2>
+
+
+<p
+id="detailHarga">
+
+</p>
+
+
+<p>
+
+Garansi 1 Minggu
+
+</p>
+
+
+<button
+onclick="addDetail()">
+
+Tambah Keranjang
+
+</button>
+
+
+<button
+onclick="closeDetail()">
+
+Tutup
+
+</button>
+
+</div>
+
+</div>
+
+
+
+
+<nav>
+
+<button
+onclick="showHome()">
+
+HOME
+
+</button>
+
+
+
+<button
+onclick="showCuan()">
+
+CARI CUAN
+
+</button>
+
+
+
+<button
+onclick="openCart()">
+
+KERANJANG
+
+</button>
+
+</nav>
+
+
+<script src="script.js">
+
+</script>
+
+</body>
+</html>
